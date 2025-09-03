@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherGenerator", "WeatherGenerator.vcxproj", "{0E62BBC4-1771-4716-BD60-1EE7D33390D7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic", "..\..\..\WBSFMultiPlatform\build\msvc\Basic.vcxproj", "{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Geomatic", "..\..\..\WBSFMultiPlatform\build\msvc\Geomatic.vcxproj", "{D1E68747-C1A3-4D7A-AB38-1631BE44E796}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelBased", "..\..\..\WBSFMultiPlatform\build\msvc\ModelBased.vcxproj", "{6BF374D7-930E-49D4-8E56-2D4098E859D1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherBased", "..\..\..\WBSFMultiPlatform\build\msvc\WeatherBased.vcxproj", "{57FF5B0D-8185-41B3-8005-D41EEFDE1028}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Debug|x64.ActiveCfg = Debug|x64
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Debug|x64.Build.0 = Debug|x64
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Debug|x86.ActiveCfg = Debug|Win32
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Debug|x86.Build.0 = Debug|Win32
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Release|x64.ActiveCfg = Release|x64
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Release|x64.Build.0 = Release|x64
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Release|x86.ActiveCfg = Release|Win32
+		{0E62BBC4-1771-4716-BD60-1EE7D33390D7}.Release|x86.Build.0 = Release|Win32
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Debug|x64.ActiveCfg = Debug|x64
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Debug|x64.Build.0 = Debug|x64
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Debug|x86.ActiveCfg = Debug|Win32
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Debug|x86.Build.0 = Debug|Win32
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Release|x64.ActiveCfg = Release|x64
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Release|x64.Build.0 = Release|x64
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Release|x86.ActiveCfg = Release|Win32
+		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}.Release|x86.Build.0 = Release|Win32
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Debug|x64.ActiveCfg = Debug|x64
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Debug|x64.Build.0 = Debug|x64
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Debug|x86.ActiveCfg = Debug|Win32
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Debug|x86.Build.0 = Debug|Win32
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Release|x64.ActiveCfg = Release|x64
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Release|x64.Build.0 = Release|x64
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Release|x86.ActiveCfg = Release|Win32
+		{D1E68747-C1A3-4D7A-AB38-1631BE44E796}.Release|x86.Build.0 = Release|Win32
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Debug|x64.ActiveCfg = Debug|x64
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Debug|x64.Build.0 = Debug|x64
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Debug|x86.Build.0 = Debug|Win32
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Release|x64.ActiveCfg = Release|x64
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Release|x64.Build.0 = Release|x64
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Release|x86.ActiveCfg = Release|Win32
+		{6BF374D7-930E-49D4-8E56-2D4098E859D1}.Release|x86.Build.0 = Release|Win32
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Debug|x64.ActiveCfg = Debug|x64
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Debug|x64.Build.0 = Debug|x64
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Debug|x86.ActiveCfg = Debug|Win32
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Debug|x86.Build.0 = Debug|Win32
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Release|x64.ActiveCfg = Release|x64
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Release|x64.Build.0 = Release|x64
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Release|x86.ActiveCfg = Release|Win32
+		{57FF5B0D-8185-41B3-8005-D41EEFDE1028}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67505681-3CDF-4FA6-B871-B0D19997A8E7}
+	EndGlobalSection
+EndGlobal
