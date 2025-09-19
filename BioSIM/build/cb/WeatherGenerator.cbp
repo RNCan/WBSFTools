@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="WeatherGenerator" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../lib/Debug64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug64/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-std=gnu++20" />
+					<Add option="-ggdb" />
+					<Add option="-pthread" />
+					<Add option="-fopenmp" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-Wno-overloaded-virtual" />
+					<Add option="-Wno-unused-result" />
+					<Add directory="../../../../WBSFMultiPlatform/src" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add library="libWeatherBased.a" />
+					<Add library="libModelBased.a" />
+					<Add library="libGeomatic.a" />
+					<Add library="libBasic.a" />
+					<Add library="libgdal.a" />
+					<Add library="libboost_filesystem-mt.a" />
+					<Add library="libboost_timer-mt.a" />
+					<Add library="libgomp.a" />
+					<Add library="libws2_32.a" />
+					<Add directory="../../../../WBSFMultiPlatform/lib/Debugx64" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../../lib/Release64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release64/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=gnu++20" />
+					<Add option="-ggdb" />
+					<Add option="-pthread" />
+					<Add option="-fopenmp" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-Wno-overloaded-virtual" />
+					<Add option="-Wno-unused-result" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
+					<Add library="libGeomatic.a" />
+					<Add library="libBasic.a" />
+					<Add library="libgdal.a" />
+					<Add library="libboost_filesystem-mt.a" />
+					<Add library="libboost_timer-mt.a" />
+					<Add library="libgomp.a" />
+					<Add library="libws2_32.a" />
+					<Add directory="../../../../WBSFMultiPlatform/lib/Releasex64" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../BioSIM_API.cpp" />
+		<Unit filename="../../BioSIM_API.h" />
+		<Unit filename="../../WeatherGenerator.cpp" />
+		<Unit filename="../../WeatherGenerator.h" />
+		<Unit filename="../../WeatherGeneratorMain.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

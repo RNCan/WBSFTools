@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>-te 1356800  6429000 1356890  6429090 -of VRT -overwrite -co "COMPRESS=LZW"   -multi -SpikeThreshold 0.75  D:\Travaux\Landsat\winter_input_year_mosaics\qcSouth/Input/QcSouth.vrt D:\Travaux\Landsat\winter_input_year_mosaics\qcSouth/Output/QcSouthNBR.vrt </LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"ModelsPath=G:/Travaux/BioSIM_API/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerWorkingDirectory>D:\Travaux\Landsat\winter_input_year_mosaics\qcNorth</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>G:/Travaux/BioSIM_API/</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>-of VRT -overwrite -co "COMPRESS=LZW"   -multi -SpikeThreshold 0.75  D:\Travaux\Landsat\winter_input_year_mosaics\qcSouth/Input/QcSouth.vrt D:\Travaux\Landsat\winter_input_year_mosaics\qcSouth/Output/QcSouthNBR_global.vrt </LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"ModelsPath=G:/Travaux/BioSIM_API/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerWorkingDirectory>D:\Travaux\Landsat\winter_input_year_mosaics\qcSouth</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>G:/Travaux/BioSIM_API/</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 </Project>
