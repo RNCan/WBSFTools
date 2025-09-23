@@ -1,21 +1,21 @@
 //******************************************************************************
 //  Project:		Weather-based simulation framework (WBSF)
 //	Programmer:     Jacques Régnière, Rémi Saint-Amant
-// 
+//
 //  It under the terms of the GNU General Public License as published by
 //     the Free Software Foundation
 //  It is provided "as is" without express or implied warranty.
-//	
+//
 //******************************************************************************
-// Description: 
+// Description:
 //				This module take Normal/Daily/Hourly database and generate
 //				weather variable (TMIN, TMAX, PRCP, TDEW, RELH, WNDS) at
 //				a target location. They generate all iteration at the same time
 //
 // Reference:
 //		Weather-regime assembler
-//		Régnière, J., St-Amant, R. 2007. 
-//		Stochastic simulation of daily air temperature and precipitation from monthly normals 
+//		Régnière, J., St-Amant, R. 2007.
+//		Stochastic simulation of daily air temperature and precipitation from monthly normals
 //		in North America north of Mexico. International Journal of Biometeorology. 51:415-430.
 //
 //******************************************************************************
@@ -42,10 +42,6 @@
 //04/04/1998	Rémi Saint-Amant	add in tempgen.cpp
 //11/08/1998	Jacques Regniere	Translation to C
 //******************************************************************************
-//#include "stdafx.h"   
-
-
-
 #include "Basic/Callback.h"
 #include "Basic/CSV.h"
 #include "Basic/openMP.h"
@@ -53,8 +49,6 @@
 #include "WeatherBased/SnowMelt.h"
 #include "WeatherBased/WeatherCorrection.h"
 
-//#include "Geomatic/TimeZones.h"
-//#include "WeatherBasedSimulationString.h"
 
 #include "WeatherGenerator.h"
 
@@ -78,15 +72,15 @@ namespace WBSF
 			196.5, 227.5, 258.0, 288.5, 319.0, 349.5 };
 
 		//  Provided by Paul Bolstad. Modified (efficiency and
-		//	index itself by Regniere 
+		//	index itself by Regniere
 		double latit, elev, slope, azimuth;
 
 		//		All angles should be in radians for trig functions, all latitudes,
-		//	longitudes in decimal degrees, and converted to radians for trig 
+		//	longitudes in decimal degrees, and converted to radians for trig
 
 		//      Solar trajectory formulae taken mostly from Paltridge and Platt, "Radiative
 		//	processes in meteorology and climatology", Elsevier.  Most of the transmittance
-		//	taken from Hoyt, Solar Energy, 1976 
+		//	taken from Hoyt, Solar Energy, 1976
 
 		float   ct1, ct2, st1, st2, sin_declin, cos_declin, sin_sol_zen,
 			cos_sol_zen, sin_latit, cos_latit,
@@ -110,12 +104,12 @@ namespace WBSF
 			interim,
 			time_stop = 15.0,        // converted to radians for some calcs.
 			time_step = 0.2,         // timestep, in hours, for calculations
-			cosi,                  // cosine of incidence angle      
-			beam_en_flat,          // incident beam on level surface 
-			beam_en;               // incident beam energy for each slope/aspect combination, in watt-hours 
+			cosi,                  // cosine of incidence angle
+			beam_en_flat,          // incident beam on level surface
+			beam_en;               // incident beam energy for each slope/aspect combination, in watt-hours
 		//midpnt[12]={ 16.5,  45.5,  75.0, 105.5, 136.0, 166.5,
 		//			197.0, 228.0, 258.5, 289.0, 319.5, 350.};
-		// mid-month day array 
+		// mid-month day array
 
 		float   julian_day,        // current day (mid month)
 			Rmax = 250;              // Standard max solar radiation difference between sloped and flat surfaces
@@ -135,7 +129,7 @@ namespace WBSF
 
 
 
-		// compute sin(latit) & cos(latit) 
+		// compute sin(latit) & cos(latit)
 		sin_latit = (float)sin(latit);
 		cos_latit = (float)cos(latit);
 
@@ -156,7 +150,7 @@ namespace WBSF
 				(float)(0.002697 * cos(3 * temp1) + 0.001480f * sin(3 * temp1));
 
 			// earth axis declination, varies by time of year, can be approximated
-			//using the above formula, based on julian day 
+			//using the above formula, based on julian day
 
 			eq_time = (float)(0.000075 + 0.001868 * ct1 - 0.032077 * st1 -
 				0.014615 * ct2 - 0.040849 * st2);
@@ -196,9 +190,9 @@ namespace WBSF
 					opt_path = (float)(1 / (sin(sol_alt) +
 						0.15 * pow((Rad2Deg(sol_alt)
 							+ 3.885), -1.253)));
-					//  optical path length, longer for lower horizon angles 
+					//  optical path length, longer for lower horizon angles
 
-					if (vis_fact == 0)            // clear sky, 23 km viz 
+					if (vis_fact == 0)            // clear sky, 23 km viz
 						trans = 0.4237 - 0.00821 *
 						pow((6.0 - elev / 1000.), 2) +
 						(0.5055 + 0.00595 *
@@ -217,7 +211,7 @@ namespace WBSF
 					//				I checked three citations, there was not much difference in
 					//				the predictions, and this was the simplest.  Will check two more
 					//				for which I have citations, one of which looks at tropical vs
-					//				temperate vs. boreal diffuse radiation 
+					//				temperate vs. boreal diffuse radiation
 
 					cosi = (cos_sol_zen * cos(slope) +
 						sin_sol_zen * sin(slope) *
@@ -225,7 +219,7 @@ namespace WBSF
 
 					//				i is the incidence angle between surface normal and incoming
 					//				beam.  As it approaches 1, full beam energy, as it approaches
-					//				90 deg, beam energy approaches 0, hence, cos function 
+					//				90 deg, beam energy approaches 0, hence, cos function
 
 					if (cosi < 0.0) cosi = 0.0;
 					ground_beam = beam * cosi;
@@ -235,12 +229,12 @@ namespace WBSF
 					beam_en_flat = beam_en_flat
 						+ beam * (cos_sol_zen + 0.136);
 
-				} // end if for solar altitude > 0 
-			}  // end of time loop 
+				} // end if for solar altitude > 0
+			}  // end of time loop
 			expin[month] = (float)((beam_en - beam_en_flat) / (Rmax / time_step *
 				(time_stop - time_start)));
 
-		} // end of month loop 
+		} // end of month loop
 		return(0);
 	}
 
@@ -265,7 +259,7 @@ namespace WBSF
 
 		ni = 0;
 		for (i = 0; i < 8; ++i) {
-			//compute the slope corresponding to each aspect 
+			//compute the slope corresponding to each aspect
 			slope = psi / (cos2lat * phi[i] + sin2lat * cos_asp[i]);
 
 			if (slope <= 47. && slope >= 0.) {
@@ -276,7 +270,7 @@ namespace WBSF
 			}
 		}
 		for (month = 0; month < 12; ++month) {
-			//Equation from Paul Bolstad's nstemp8.c program. 
+			//Equation from Paul Bolstad's nstemp8.c program.
 			if (ni > 0)
 				exposure_index[month] = exposure_index[month] / ni * maxt_elev / range95;
 		}
@@ -394,14 +388,14 @@ namespace WBSF
 	//****************************************************************************
 	// Summary:		Initialize
 	//
-	// Description: clear output simulation and initialize random seed and 
+	// Description: clear output simulation and initialize random seed and
 	//				generation of weather gradient for the target
 	//
-	// Input:		
+	// Input:
 	//
 	// Output:
 	//
-	// Note:		
+	// Note:
 	//****************************************************************************
 	ERMsg CWeatherGenerator::Initialize(CCallback& callback)
 	{
@@ -552,7 +546,7 @@ namespace WBSF
 				data.SetStat(H_WNDS, U10);
 			}
 
-			//Wnd2 from WndS 
+			//Wnd2 from WndS
 			if (variables[H_WND2] && !data[H_WND2].is_init() && data[H_WNDS].is_init())
 			{
 				double U10 = data[H_WNDS][MEAN];//wind speed at 10 meters
@@ -660,7 +654,7 @@ namespace WBSF
 					if (msg && bWD && !bWDcomplet && !m_tgi.m_bNoFillMissing)
 						msg = ComputeWindDirection(m_simulationPoints[0]);
 
-					//3- if they are missing mandatory variables, complete with normals 
+					//3- if they are missing mandatory variables, complete with normals
 					if (!m_simulationPoints[0].IsComplete(m_tgi.GetMandatoryVariables(), m_tgi.GetTPeriod()))
 					{
 						bCopyReplication = false;
@@ -1022,17 +1016,17 @@ namespace WBSF
 	//				//output
 	//				if (!data[H_PRES].is_init())
 	//				{
-	//					// daily atmospheric pressure (Pa) as a function of elevation (m) 
+	//					// daily atmospheric pressure (Pa) as a function of elevation (m)
 	//					// From the discussion on atmospheric statics in:
 	//					// Iribane, J.V., and W.L. Godson, 1981. Atmospheric Thermodynamics, 2nd
 	//					// Edition. D. Reidel Publishing Company, Dordrecht, The Netherlands. (p. 168)
 	//
-	//					const double MA = 28.9644e-3;     // (kg mol-1) molecular weight of air 
-	//					const double R = 8.3143;          // (m3 Pa mol-1 K-1) gas law constant 
-	//					const double LR_STD = 0.0065;     // (-K m-1) standard temperature lapse rate 
-	//					const double G_STD = 9.80665;     // (m s-2) standard gravitational accel.  
-	//					const double P_STD = 101325.0;    // (Pa) standard pressure at 0.0 m elevation 
-	//					const double T_STD = 288.15;      // (K) standard temp at 0.0 m elevation   
+	//					const double MA = 28.9644e-3;     // (kg mol-1) molecular weight of air
+	//					const double R = 8.3143;          // (m3 Pa mol-1 K-1) gas law constant
+	//					const double LR_STD = 0.0065;     // (-K m-1) standard temperature lapse rate
+	//					const double G_STD = 9.80665;     // (m s-2) standard gravitational accel.
+	//					const double P_STD = 101325.0;    // (Pa) standard pressure at 0.0 m elevation
+	//					const double T_STD = 288.15;      // (K) standard temp at 0.0 m elevation
 	//
 	//					double alt = itR->m_alt;
 	//					double t1 = 1.0 - (LR_STD * alt) / T_STD;
@@ -1052,10 +1046,10 @@ namespace WBSF
 	//	ERMsg msg;
 	//
 	//	bool bCompute = false;
-	//	
+	//
 	//	if (m_tgi.m_variables[H_EA] && !simulationPointVector.IsComplete(CWVariables(H_EA)))
 	//		bCompute = true;
-	//	else if(m_tgi.m_variables[H_ES] && !simulationPointVector.IsComplete(CWVariables(H_ES))) 
+	//	else if(m_tgi.m_variables[H_ES] && !simulationPointVector.IsComplete(CWVariables(H_ES)))
 	//		bCompute = true;
 	//	else if (m_tgi.m_variables[H_VPD] && !simulationPointVector.IsComplete(CWVariables(H_VPD)))
 	//		bCompute = true;
@@ -1075,7 +1069,7 @@ namespace WBSF
 	//					//data.SetStat(H_EA, 610.7 * exp(17.38 * data[H_TDEW][MEAN] / (239.0 + data[H_TDEW][MEAN])));
 	//					data.SetStat(H_EA, Ea);
 	//				}
-	//					
+	//
 	//					//data.SetStat(H_EA, 610.7 * exp(17.38 * data[H_TDEW][MEAN] / (239.0 + data[H_TDEW][MEAN])));
 	//
 	//				if (m_tgi.m_variables[H_ES] && !data[H_ES].is_init())
@@ -1083,7 +1077,7 @@ namespace WBSF
 	//					double Es = e°(data[H_TMAX][MEAN], data[H_TMAX][MEAN]);
 	//					data.SetStat(H_ES, Es);
 	//				}
-	//					
+	//
 	//
 	//				if (m_tgi.m_variables[H_VPD] && !data[H_VPD].is_init())
 	//				{
@@ -1118,7 +1112,7 @@ namespace WBSF
 		{
 
 			//compute the new SnowPack value
-			//if we are in North America, we used the longitude to 
+			//if we are in North America, we used the longitude to
 			//make a correction on the model.
 			//else, the default arbitrary value of -100 is used.
 			CSnowMelt snowMelt;
@@ -1245,19 +1239,19 @@ namespace WBSF
 
 
 	//***************************************************************
-	//      ******************* Hourly *******************           
+	//      ******************* Hourly *******************
 
 	//****************************************************************************
 	// Summary:		GetHourly
 	//
 	// Description: Get hourly data for the target from hourly database.
 	//
-	// Input:		
+	// Input:
 	//
 	// Output:		CSimulationPoint& simulationPoint: the simulation point for all years
 	//
-	// Note:		
-	//				
+	// Note:
+	//
 	//****************************************************************************
 
 
@@ -1472,19 +1466,19 @@ namespace WBSF
 
 
 	//****************************************************************************
-	//      ******************* Daily *******************           
+	//      ******************* Daily *******************
 
 	//****************************************************************************
 	// Summary:		GetDaily
 	//
 	// Description: Get daily data for the target from daily database.
 	//
-	// Input:		
+	// Input:
 	//
 	// Output:		CDailyDataVector& dailyData: the daily data for all years
 	//
-	// Note:		
-	//				
+	// Note:
+	//
 	//****************************************************************************
 	ERMsg CWeatherGenerator::GetDaily(CSimulationPoint& simulationPoint, CCallback& callback)
 	{
@@ -1700,20 +1694,20 @@ namespace WBSF
 	}
 
 	//****************************************************************************
-	// GenerateNormals 
+	// GenerateNormals
 	//
 	//****************************************************************************
 	// Summary:		GenerateNormals
 	//
-	// Description: Generate daily data for the target from normals with CWeatherGeneratorKernel. 
+	// Description: Generate daily data for the target from normals with CWeatherGeneratorKernel.
 	//				Generate hourly from daily when hourly.
 	//
-	// Input:		
+	// Input:
 	//
 	// Output:		CSimulationPointVector& simulationPointVector: the normal data
 	//
-	// Note:		
-	//				
+	// Note:
+	//
 	//****************************************************************************
 	ERMsg CWeatherGenerator::GenerateNormals(CSimulationPointVector& simulationPointVector, CCallback& callback)
 	{
@@ -1741,7 +1735,7 @@ namespace WBSF
 		assert(m_seedMatrix.size() == m_nbReplications);
 		assert(simulationPointVector.size() == m_nbReplications);
 
-		//generate daily/hourly data 
+		//generate daily/hourly data
 		for (size_t r = 0; r < m_nbReplications && msg; r++)
 		{
 			if (simulationPointVector[r].empty())
@@ -1765,7 +1759,7 @@ namespace WBSF
 			}
 			else
 			{
-				//creation from incomplete observations 
+				//creation from incomplete observations
 				simulationPointVector[r].CreateYears(m_tgi.GetTPeriod());//complete the creation of all years if missing
 
 				for (size_t y = 0; y < m_tgi.GetNbYears() && msg; y++)
@@ -1949,7 +1943,7 @@ namespace WBSF
 	void CWeatherGenerator::RemoveForecast(CSimulationPoint& simulationPoint)
 	{
 		//remove forecast only for the next 60 days
-		//do not let forecast taffect simulation with CC database 
+		//do not let forecast taffect simulation with CC database
 		CTRef today = CTRef::GetCurrentTRef(simulationPoint.GetTM());
 		CTRef end = today + (60 * (simulationPoint.IsHourly() ? 24 : 1));// simulationPoint.GetEntireTPeriod().End();
 
@@ -1965,7 +1959,7 @@ namespace WBSF
 
 
 	//*******************************************************************************
-	//exposition 
+	//exposition
 
 
 
@@ -1997,7 +1991,7 @@ namespace WBSF
 
 		for (int m = 0; m < 12; m++)
 		{
-			//Equation from Paul Bolstad's nstemp8.c program. 
+			//Equation from Paul Bolstad's nstemp8.c program.
 			exposure_index[m] *= (maxt_elev / range95);
 		}
 
@@ -2008,18 +2002,18 @@ namespace WBSF
 	{
 
 		//  Provided by Paul Bolstad. Modified (efficiency and
-		//	index itself by Regniere 
+		//	index itself by Regniere
 		double elev = inelev;
 		double slope = Deg2Rad(inslope);
 		double azimuth = Deg2Rad(inazimuth);
 		double latit = Deg2Rad(inlatit);
 
 		//		All angles should be in radians for trig functions, all latitudes,
-		//	longitudes in decimal degrees, and converted to radians for trig 
+		//	longitudes in decimal degrees, and converted to radians for trig
 
 		//      Solar trajectory formula taken mostly from Paltridge and Platt, "Radiative
 		//	processes in meteorology and climatology", Elsevier.  Most of the transmittance
-		//	taken from Hoyt, Solar Energy, 1976 
+		//	taken from Hoyt, Solar Energy, 1976
 
 		double   ct1, ct2, st1, st2, sin_declin, cos_declin, sin_sol_zen,
 			cos_sol_zen, sin_latit, cos_latit,
@@ -2043,13 +2037,13 @@ namespace WBSF
 			interim,
 			time_stop = 15.0,        // converted to radians for some calcs.
 			time_step = 0.2,         // timestep, in hours, for calculations
-			cosi,                  // cosine of incidence angle      
-			beam_en_flat,          // incident beam on level surface 
-			beam_en;               // incident beam energy for each slope/aspect combination, in watt-hours 
-		
-		// mid-month day array 
+			cosi,                  // cosine of incidence angle
+			beam_en_flat,          // incident beam on level surface
+			beam_en;               // incident beam energy for each slope/aspect combination, in watt-hours
+
+		// mid-month day array
 		static const array<float,12> midpnt={ 16.5,  45.5,  75.0, 105.5, 136.0, 166.5, 197.0, 228.0, 258.5, 289.0, 319.5, 350.};
-		
+
 
 		double   julian_day,        // current day (mid month)
 			Rmax = 250;              // Standard max solar radiation difference between sloped and flat surfaces
@@ -2060,7 +2054,7 @@ namespace WBSF
 
 
 
-		// compute sin(latit) & cos(latit) 
+		// compute sin(latit) & cos(latit)
 		sin_latit = sin(latit);
 		cos_latit = cos(latit);
 
@@ -2081,7 +2075,7 @@ namespace WBSF
 				(0.002697 * cos(3 * temp1) + 0.001480 * sin(3 * temp1));
 
 			// earth axis declination, varies by time of year, can be approximated
-			//using the above formula, based on julian day 
+			//using the above formula, based on julian day
 
 			eq_time = (0.000075 + 0.001868 * ct1 - 0.032077 * st1 -
 				0.014615 * ct2 - 0.040849 * st2);
@@ -2124,9 +2118,9 @@ namespace WBSF
 					opt_path = (1 / (sin(sol_alt) +
 						0.15 * pow((Rad2Deg(sol_alt)
 							+ 3.885), -1.253)));
-					//  optical path length, longer for lower horizon angles 
+					//  optical path length, longer for lower horizon angles
 
-					if (vis_fact == 0)            // clear sky, 23 km viz 
+					if (vis_fact == 0)            // clear sky, 23 km viz
 						trans = 0.4237 - 0.00821 *
 						pow((6.0 - elev / 1000.), 2) +
 						(0.5055 + 0.00595 *
@@ -2145,7 +2139,7 @@ namespace WBSF
 					//				I checked three citations, there was not much difference in
 					//				the predictions, and this was the simplest.  Will check two more
 					//				for which I have citations, one of which looks at tropical vs
-					//				temperate vs. boreal diffuse radiation 
+					//				temperate vs. boreal diffuse radiation
 
 					cosi = (cos_sol_zen * cos(slope) +
 						sin_sol_zen * sin(slope) *
@@ -2153,7 +2147,7 @@ namespace WBSF
 
 					//				i is the incidence angle between surface normal and incoming
 					//				beam.  As it approaches 1, full beam energy, as it approaches
-					//				90 deg, beam energy approaches 0, hence, cos function 
+					//				90 deg, beam energy approaches 0, hence, cos function
 
 					if (cosi < 0.0)
 						cosi = 0.0;
@@ -2164,13 +2158,13 @@ namespace WBSF
 					beam_en = beam_en + ground_beam + dif_irrad;
 					beam_en_flat = beam_en_flat + beam * (cos_sol_zen + 0.136);
 
-				} // end if for solar altitude > 0 
-			}  // end of time loop 
+				} // end if for solar altitude > 0
+			}  // end of time loop
 
 			expin[month] = ((beam_en - beam_en_flat) / (Rmax / time_step * (time_stop - time_start)));
 
 
-		} // end of month loop 
+		} // end of month loop
 
 		return 0;
 	}

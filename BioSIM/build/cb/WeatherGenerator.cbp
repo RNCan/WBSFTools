@@ -7,10 +7,11 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../lib/Debug64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug64/" />
+				<Option output="../../bin/Debugx64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debugx64/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters='&quot;ModelsPath=G:/Travaux/BioSIM_API/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
 				<Compiler>
 					<Add option="-m64" />
 					<Add option="-g" />
@@ -33,18 +34,23 @@
 					<Add library="libgdal.a" />
 					<Add library="libboost_filesystem-mt.a" />
 					<Add library="libboost_timer-mt.a" />
+					<Add library="libboost_iostreams-mt.a" />
+					<Add library="libboost_locale-mt.a" />
+					<Add library="libboost_process-mt.a" />
+					<Add library="libboost_serialization-mt.a" />
 					<Add library="libgomp.a" />
 					<Add library="libws2_32.a" />
 					<Add directory="../../../../WBSFMultiPlatform/lib/Debugx64" />
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="../../lib/Release64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release64/" />
+				<Option output="../../bin/Releasex64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Releasex64/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-m64" />
 					<Add option="-std=gnu++20" />
 					<Add option="-ggdb" />
 					<Add option="-pthread" />
@@ -57,11 +63,14 @@
 				<Linker>
 					<Add option="-s" />
 					<Add option="-m64" />
+					<Add library="libWeatherBased.a" />
+					<Add library="libModelBased.a" />
 					<Add library="libGeomatic.a" />
 					<Add library="libBasic.a" />
 					<Add library="libgdal.a" />
 					<Add library="libboost_filesystem-mt.a" />
 					<Add library="libboost_timer-mt.a" />
+					<Add library="libboost_iostreams-mt.a" />
 					<Add library="libgomp.a" />
 					<Add library="libws2_32.a" />
 					<Add directory="../../../../WBSFMultiPlatform/lib/Releasex64" />

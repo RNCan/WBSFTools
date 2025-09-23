@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <boost/algorithm/string/predicate.hpp> 
+#include <boost/algorithm/string/predicate.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/iostreams/filtering_streambuf.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
@@ -429,10 +429,10 @@ namespace WBSF
 		return msg;
 	}
 
-	//Load WGInput 
+	//Load WGInput
 	void CWeatherGeneratorOptions::GetWGInput(CWGInput& WGInput)const
 	{
-		//Load WGInput 
+		//Load WGInput
 		//CWGInput WGInput;
 
 
@@ -464,8 +464,8 @@ namespace WBSF
 
 	//******************************************************************************************************************************
 
-	//CCriticalSection m_CS;//to protect shore 
-	std::mutex m_mutex;//to protect shore 
+	//CCriticalSection m_CS;//to protect shore
+	std::mutex m_mutex;//to protect shore
 
 
 
@@ -489,70 +489,15 @@ namespace WBSF
 			{
 
 				CCallback callback;
-
-
-
-				//std::shared_ptr<storage_credential> cred;
-				//std::shared_ptr<storage_account> account;
-				//if (m_init.IsAzure())
-				//{
-				//	cred = std::make_shared<shared_key_credential>(m_init.m_account_name, m_init.m_account_key);
-				//	account = std::make_shared<storage_account>(m_init.m_account_name, cred, /* use_https */ true);
-				//}
-
-
 				if (!m_init.m_normal_name.empty())
 				{
 					m_pNormalDB.reset(new CNormalsDatabase);
 
 
-					//if (m_init.IsAzure())
-					//{
-					//	blob_client client(account, 16);
-					//	std::stringstream azure_stream;
-					//	auto ret = client.download_blob_to_stream(m_init.m_container_name, m_init.m_normal_name, 0, 0, azure_stream).get();
-					//	if (ret.success())
-					//	{
-					//		try
-					//		{
-					//			boost::iostreams::filtering_istreambuf in;
-					//			in.push(boost::iostreams::gzip_decompressor());
-					//			in.push(azure_stream);
-					//			std::istream incoming(&in);
-
-					//			size_t version = 0;
-					//			incoming.read((char*)(&version), sizeof(version));
-					//			if (version == CNormalsDatabase::VERSION)
-					//			{
-					//				incoming >> *m_pNormalDB;
-					//				m_pNormalDB->CreateAllCanals();//create here to be thread safe
-					//			}
-					//			else
-					//			{
-					//				msg.ajoute("Normal binary database (version = " + to_string(version) + ") was not created with he latest version (" + to_string(CNormalsDatabase::VERSION) + "). Rebuild new binary.");
-					//			}
-
-					//		}
-					//		catch (const boost::iostreams::gzip_error& exception)
-					//		{
-					//			int error = exception.error();
-					//			if (error == boost::iostreams::gzip::zlib_error)
-					//			{
-					//				//check for all error code    
-					//				msg.ajoute(exception.what());
-					//			}
-					//		}
-					//	}
-					//	else
-					//	{
-					//		msg.ajoute("Failed to download Normals, error: " + ret.error().code + ", " + ret.error().code_name);
-					//	}
-					//}
-					//else
-					//{
 					if (IsEqual(GetFileExtension(m_init.m_normal_name), ".NormalsDB"))
 					{
 						msg += m_pNormalDB->Open(m_init.m_normal_name);
+
 						if (msg)
 							m_pNormalDB->OpenSearchOptimization(callback);
 					}
@@ -566,66 +511,12 @@ namespace WBSF
 					{
 						msg.ajoute("Invalid Normals database extension: " + m_init.m_normal_name);
 					}
-					//}
 
 					if (!m_init.m_daily_name.empty())
 					{
 						m_pDailyDB.reset(new CDailyDatabase(int(pGLOBAL_DLL_DATA->m_daily_cache_size)));
 
 
-						//if (m_init.IsAzure())
-						//{
-						//	m_pDailyDB->m_account_name = m_init.m_account_name;
-						//	m_pDailyDB->m_account_key = m_init.m_account_key;
-						//	m_pDailyDB->m_container_name = m_init.m_container_name;
-						//	m_pDailyDB->m_DB_blob = GetPath(m_init.m_daily_name) + GetFileTitle(m_init.m_daily_name);
-						//	m_pDailyDB->LoadAzureDLL();
-						//
-						//
-						//	blob_client client(account, 16);
-						//	std::stringstream azure_stream;
-						//	auto ret = client.download_blob_to_stream(m_init.m_container_name, m_init.m_daily_name, 0, 0, azure_stream).get();
-						//	if (ret.success())
-						//	{
-						//		try
-						//		{
-						//			boost::iostreams::filtering_istreambuf in;
-						//			in.push(boost::iostreams::gzip_decompressor());
-						//			in.push(azure_stream);
-						//			std::istream incoming(&in);
-						//
-						//			size_t version = 0;
-						//			incoming.read((char*)(&version), sizeof(version));
-						//
-						//			if (version == CDailyDatabase::VERSION)
-						//			{
-						//				incoming >> *m_pDailyDB;
-						//				m_pDailyDB->CreateAllCanals();//create here to be thread safe
-						//			}
-						//			else
-						//			{
-						//				msg.ajoute("Daily binary database (version = " + to_string(version) + ") was not created with he latest version (" + to_string(CNormalsDatabase::VERSION) + "). Rebuild new binary.");
-						//			}
-						//
-						//		}
-						//		catch (const boost::iostreams::gzip_error& exception)
-						//		{
-						//			int error = exception.error();
-						//			if (error == boost::iostreams::gzip::zlib_error)
-						//			{
-						//				//check for all error code    
-						//				msg.ajoute(exception.what());
-						//			}
-						//		}
-						//
-						//	}
-						//	else
-						//	{
-						//		msg.ajoute("Failed to download Daily, error: " + ret.error().code + ", " + ret.error().code_name);
-						//	}
-						//}
-						//else
-						//{
 						if (IsEqual(GetFileExtension(m_init.m_daily_name), ".DailyDB"))
 						{
 							msg += m_pDailyDB->Open(m_init.m_daily_name, CDailyDatabase::modeRead, callback, true);
@@ -723,7 +614,7 @@ namespace WBSF
 				{
 					CLocation location(options.m_name, options.m_ID, options.m_latitude, options.m_longitude, options.m_elevation);
 
-					//Load WGInput 
+					//Load WGInput
 					CWGInput WGInput;
 					options.GetWGInput(WGInput);
 
@@ -858,7 +749,7 @@ namespace WBSF
 				{
 					CLocation location(options.m_name, options.m_ID, options.m_latitude, options.m_longitude, options.m_elevation);
 
-					//Load WGInput 
+					//Load WGInput
 					//CWGInput WGInput = options.GetWGInput();
 					CWGInput WGInput;
 					options.GetWGInput(WGInput);
@@ -1017,7 +908,7 @@ namespace WBSF
 		return msg;
 	}
 
-	//Load WGInput 
+	//Load WGInput
 	ERMsg CModelExecutionOptions::GetModelInput(const CModel& model, CModelInput& modelInput)const
 	{
 		ERMsg msg;
@@ -1025,7 +916,7 @@ namespace WBSF
 		//Get default parameters
 		model.GetDefaultParameter(modelInput);
 
-		//update parameters		
+		//update parameters
 		vector<string> args = Tokenize(m_parameters, "+");//parameters separate by space, must not have space in name
 		for (size_t i = 0; i < args.size(); i++)
 		{
@@ -1325,7 +1216,7 @@ namespace WBSF
 		CModelInput modelInput;
 		m_pModel->GetDefaultParameter(modelInput);
 
-		//update parameters		
+		//update parameters
 		for (size_t i = 0; i < modelInput.size(); i++)
 		{
 			params += (i > 0 ? "+" : "") + modelInput[i].m_name + ":" + modelInput[i].m_value;
@@ -1445,7 +1336,7 @@ namespace WBSF
 			int error = exception.error();
 			if (error == boost::iostreams::gzip::zlib_error)
 			{
-				//check for all error code    
+				//check for all error code
 				msg.ajoute(exception.what());
 			}
 		}
