@@ -76,14 +76,23 @@ namespace WBSF
 	{
 		CLocation location;
 
+
+
+		//xml or json????
 		nlohmann::json data = nlohmann::json::parse(metadata);
+		//auto l = data.at("Location");
+		//location.m_ID = l.at("ID");
 
-
-		/*zen::XmlDoc doc = zen::parse(metadata);
-		zen::XmlElement* pLoc = doc.root().getChild(CLocation::GetXMLFlag());
-		assert(pLoc);
-		if (pLoc)
-			readStruc(*pLoc, location);*/
+		location.m_ID = data["Location"]["ID"];
+		location.m_name = data["Location"]["Name"];
+		location.m_lat = data["Location"]["Latitude"];
+		location.m_lon = data["Location"]["Longitude"];
+		location.m_elev = data["Location"]["Elevation"];
+		
+		//pugi::xml_document doc;
+		//doc.load_string(metadata.c_str());
+		//pugi::xml_node node = doc.root().child("Metadata").child(CLocationVector::XML_FLAG);
+		//location.read_xml(node);
 
 		return location;
 	}
@@ -672,8 +681,8 @@ namespace WBSF
 						//};
 						//
 						//std::vector<Point> points = { { 1, 2 }, { 10, 20 } };
-						nlohmann::json json("nom:4");
-						std::string json_str = json.dump();
+						//nlohmann::json json("nom:4");
+						//std::string json_str = json.dump();
 						//std::cout << "\nSerialized Points vector:\n" << points_json_str << std::endl;
 
 
@@ -685,16 +694,45 @@ namespace WBSF
 						//declaration.append_attribute("version") = "1.0";
 						//declaration.append_attribute("encoding") = "UTF-8";
 
+
+
 						// Create the root node
 						//pugi::xml_node root = doc.append_child("Metadata");
+						//
+						//// Add elements and attributes
+						//pugi::xml_node locNode = root.append_child(CLocationVector::XML_FLAG);
+						////locNode.append_child(pugi::node_pcdata).set_value("VALUIE");
+						////string OK = locNode.value();
+						//
+						//location.write_xml(locNode);
+						//CLocation test;
+						//
+						//test.read_xml(locNode);
+						//
+						////zen::XmlElement root("Metadata");
+						////zen::writeStruc(location, root.addChild(CLocation::GetXMLFlag()));
+						//std::stringstream ss;
+						//doc.save(ss);
+						//output.m_metadata = ss.str();
 
-						// Add elements and attributes
-						//pugi::xml_node locNode = root.append_child(CLocation::GetXMLFlag());
+						using namespace nlohmann::literals;
+
+						// Using initializer lists
+						nlohmann::json l =
+						{
+							{"Location",
+								{
+								{"ID", location.m_ID},
+								{"Name", location.m_name},
+								{"Latitude", location.m_lat},
+								{ "Longitude", location.m_lon },
+								{ "Elevation", location.m_elev }
+								}
+							}
+						};
 
 
-						//zen::XmlElement root("Metadata");
-						//zen::writeStruc(location, root.addChild(CLocation::GetXMLFlag()));
-						output.m_metadata = json_str;
+						output.m_metadata = l.dump();
 
 						std::stringstream compressed;
 						boost::iostreams::copy(out, compressed);
@@ -989,7 +1027,7 @@ namespace WBSF
 
 							msg += m_pModel->Load(model_file_path);
 							if (msg)
-								msg += m_pModel->LoadDLL();
+								msg += m_pModel->LoadLibrary();
 
 							break;
 						}

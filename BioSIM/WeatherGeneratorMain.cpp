@@ -13,7 +13,7 @@
 #include "BioSIM_API.h"
 
 
-//"ModelsPath=G:/Travaux/BioSIM_API/Models/&shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"
+//"ModelsPath=E:/ProjectCP/WBSFTools/BioSIM/bin/Debugx64/Models/&shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"
 
 
 
@@ -48,11 +48,12 @@ int main(int argc, char* argv[])
 	CBioSIM_API_GlobalData global;
 	string init = global.InitGlobalData(globa_data);
 	cout << init << endl;
-	cout << "Time to initialize global data: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+	cout << "Time to initialize global data: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
 
 
 
 	cout << "Initialize Weather Generator" << endl;
+	timer.start();
 	CWeatherGeneratorAPI WG("WG1");
 	string msg = WG.Initialize(options);
 	cout << msg << endl;
@@ -60,7 +61,9 @@ int main(int argc, char* argv[])
 
 	if (msg == "Success")
 	{
-		cout << "Time to initialize Weather Generator: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+		cout << "Time to initialize Weather Generator: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
+		
+		timer.start();
 		CTeleIO WGout = WG.Generate("Compress=0&Variables=T&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
 		msg = WGout.m_msg;
 		cout << msg << endl;
@@ -68,16 +71,19 @@ int main(int argc, char* argv[])
 
 		if (msg == "Success")
 		{
-			cout << "Time to generate weather: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
-			cout << "Initialize DegreeDay model";
+			cout << "Time to generate weather: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
+			cout << "Initialize DegreeDay model" << endl;
+
+			timer.start();
 			CModelExecutionAPI model("Model1");
 			msg = model.Initialize("Model=DegreeDay (Annual).mdl");
 			cout << msg;
-			cout << "Time to initialize DegreeDay model: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+			
 
 
 			if (msg == "Success")
 			{
+				cout << "Time to initialize DegreeDay model: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
 				string variables = model.GetWeatherVariablesNeeded();
 				string parameters = model.GetDefaultParameters();
 				bool compress = false;
@@ -86,28 +92,41 @@ int main(int argc, char* argv[])
 
 				//&Elevation=2800
 				//example of extracting weather from
-				cout << "Generate weather for 2020-2021, 1 replications" << endl;
-				CTeleIO WGout = WG.Generate("Compress=" + compress_str + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2020&Last_year=2021&Replications=1");
+				cout << "Generate weather for 2008-2010, 1 replications" << endl;
+				timer.start();
+				CTeleIO WGout = WG.Generate("Compress=" + compress_str + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
 				cout << WGout.m_msg << endl;
-				cout << "Time to generate weather: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
 
-
-				if (msg == "Success")
+				if (WGout.m_msg == "Success")
 				{
-
+					cout << "Time to generate weather: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
 					cout << "Execute DegreeDay Model" << endl;
 					CTeleIO modelOut = model.Execute("Compress=" + compress_str, WGout);
 					cout << modelOut.m_msg << endl;
 					cout << modelOut.m_data << endl;
-					cout << "Time to run DD model: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+					
 
-					cout << endl << endl << "Second generation" << endl;
-					WGout = WG.Generate("Compress=" + compress_str + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2020&Last_year=2021&Replications=1");
-					cout << "Time to generate weather: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+					if (WGout.m_msg == "Success")
+					{
+						cout << "Time to run DD model: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
+						cout << endl << endl << "Second generation" << endl;
+						
+						timer.start();
+						WGout = WG.Generate("Compress=" + compress_str + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
 
-					modelOut = model.Execute("Compress=" + compress_str, WGout);
-					cout << modelOut.m_data << endl;
-					cout << "Time to run DD model: " << SecondToDHMS(timer.elapsed().wall / 1e9) << " ms" << endl << endl;
+						if (WGout.m_msg == "Success")
+						{
+							cout << "Time to generate weather (second time): " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
+
+							timer.start();
+							modelOut = model.Execute("Compress=" + compress_str, WGout);
+							cout << modelOut.m_data << endl;
+							if (WGout.m_msg == "Success")
+							{
+								cout << "Time to run DD model (second time): " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
+							}
+						}
+					}
 				}
 			}
 		}
