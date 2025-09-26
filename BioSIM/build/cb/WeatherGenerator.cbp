@@ -13,17 +13,17 @@
 				<Option compiler="gcc" />
 				<Option parameters='&quot;ModelsPath=G:/Travaux/BioSIM_API/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
 				<Compiler>
-					<Add option="-m64" />
-					<Add option="-g" />
 					<Add option="-std=gnu++20" />
+					<Add option="-m64" />
 					<Add option="-ggdb" />
+					<Add option="-g" />
 					<Add option="-pthread" />
 					<Add option="-fopenmp" />
 					<Add option="-Wno-unknown-pragmas" />
 					<Add option="-Wno-deprecated-enum-enum-conversion" />
 					<Add option="-Wno-overloaded-virtual" />
 					<Add option="-Wno-unused-result" />
-					<Add directory="../../../../WBSFMultiPlatform/src" />
+					<Add directory="../../../../WBSF/src" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -59,6 +59,8 @@
 					<Add option="-Wno-deprecated-enum-enum-conversion" />
 					<Add option="-Wno-overloaded-virtual" />
 					<Add option="-Wno-unused-result" />
+					<Add directory="../../../src" />
+					<Add directory="../../../../WBSF/src" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

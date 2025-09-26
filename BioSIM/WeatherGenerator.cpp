@@ -44,7 +44,7 @@
 //******************************************************************************
 #include "Basic/Callback.h"
 #include "Basic/CSV.h"
-#include "Basic/openMP.h"
+#include "Basic/OpenMP.h"
 #include "WeatherBased/MTClim43.h"
 #include "WeatherBased/SnowMelt.h"
 #include "WeatherBased/WeatherCorrection.h"
@@ -478,10 +478,10 @@ namespace WBSF
 					{
 
 						assert(simulationPoints[i][TRef][v].is_init());
-						assert(!_isnan(simulationPoints[i][TRef][v][MEAN]));
+						assert(!isnan(simulationPoints[i][TRef][v][MEAN]));
 						assert(!IsMissing(simulationPoints[i][TRef][v][MEAN]));
 
-						if (!simulationPoints[i][TRef][v].is_init() || _isnan(simulationPoints[i][TRef][v][MEAN]) || IsMissing(simulationPoints[i][TRef][v][MEAN]))
+						if (!simulationPoints[i][TRef][v].is_init() || isnan(simulationPoints[i][TRef][v][MEAN]) || IsMissing(simulationPoints[i][TRef][v][MEAN]))
 							bRep = false;
 					}
 				}
@@ -896,7 +896,7 @@ namespace WBSF
 						data.s_prcp[jd] = day[H_PRCP][SUM] / 10;	//ppt in cm
 						data.s_swe[jd] = bHaveSnowpack ? day[H_SWE][MEAN] / 10 : 0;	//Snow water equivalent MTClim 4.3 in cm. If not available, will be computed later
 						data.s_tdew[jd] = bHaveTdew ? day[H_TDEW][MEAN] : -999;
-						assert(!_isnan(data.s_tdew[jd]));
+						assert(!isnan(data.s_tdew[jd]));
 
 						//output
 						data.s_srad[jd] = 0;
@@ -943,7 +943,7 @@ namespace WBSF
 
 							double Tair = (data.s_tmin[jd] + data.s_tmax[jd]) / 2;
 							double Hr2 = Td2Hr(Tair, data.s_tdew[jd]);
-							assert(!_isnan(Hr2));
+							assert(!isnan(Hr2));
 							//how to compute relative humidity like MTCLim or BioSIM????? a vérifier
 							wDay[H_RELH] = Hr2;
 							//wDay[H_RELH] = (data.s_Ea[jd] / data.s_Es[jd] * 100);
@@ -954,8 +954,8 @@ namespace WBSF
 						{
 							assert(data.s_srad[jd] >= 0);
 							assert(data.s_dayl[jd] >= 0);
-							assert(!_isnan(data.s_srad[jd]));
-							assert(!_isnan(data.s_dayl[jd]));
+							assert(!isnan(data.s_srad[jd]));
+							assert(!isnan(data.s_dayl[jd]));
 							//wDay[H_SRAD] = (data.s_srad[jd] * data.s_dayl[jd] / 1000000); // convert W/m² to MJ/m²·day
 							wDay[H_SRAD] = data.s_srad[jd] * data.s_dayl[jd] / (24 * 3600); // convert daylight radiation [W/m²] into daily radiation [W/m²]
 						}
