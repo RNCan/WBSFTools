@@ -446,7 +446,7 @@
 	"Basic/Callback.h"
 	"WeatherBased/WeatherDefine.h"
 
-1758882760 /home/remi/Project/WBSF/src/WeatherBased/WeatherDatabase.h
+1759245426 /home/remi/Project/WBSF/src/WeatherBased/WeatherDatabase.h
 	<deque>
 	<memory>
 	<boost/dll/shared_library.hpp>
@@ -534,7 +534,7 @@
 1758882760 /home/remi/Project/WBSF/src/ModelBased/ParametersVariations.h
 	"ModelInputParameter.h"
 
-1758882760 /home/remi/Project/WBSF/src/ModelBased/Model.h
+1759253617 /home/remi/Project/WBSF/src/ModelBased/Model.h
 	<mutex>
 	<boost/dll/shared_library.hpp>
 	"WeatherBased/WeatherDefine.h"
@@ -557,13 +557,13 @@
 	"Basic/GeoBasic.h"
 	"Geomatic/GDAL.h"
 
-1758882760 /home/remi/Project/WBSF/src/Geomatic/GDAL.h
+1759244612 /home/remi/Project/WBSF/src/Geomatic/GDAL.h
 	"gdal/gdal_priv.h"
 	"gdal/ogr_spatialref.h"
 	"gdal_priv.h"
 	"ogr_spatialref.h"
-	"/usr/include/gdal/gdal_priv.h"
-	"/usr/include/gdal/ogr_spatialref.h"
+	"/usr/local/include/gdal_priv.h"
+	"/usr/local/include/ogr_spatialref.h"
 
 1707419785 /usr/include/gdal/gdal_priv.h
 	"gdal.h"
@@ -799,11 +799,204 @@
 	"Basic/UtilTime.h"
 	"WeatherBased/WeatherDefine.h"
 
-1758882621 source:/home/remi/Project/WBSFTools/BioSIM/WeatherGeneratorMain.cpp
+1759253324 source:/home/remi/Project/WBSFTools/BioSIM/WeatherGeneratorMain.cpp
 	<cstdio>
 	<iostream>
 	<boost/timer/timer.hpp>
+	<boost/filesystem.hpp>
+	<boost/exception/all.hpp>
 	"Basic/UtilStd.h"
 	"Geomatic/GDAL.h"
 	"BioSIM_API.h"
+	<boost/dll/shared_library.hpp>
+
+1752316329 /usr/local/include/gdal_priv.h
+	"gdal.h"
+	"gdal_frmts.h"
+	"gdalsubdatasetinfo.h"
+	"cpl_vsi.h"
+	"cpl_conv.h"
+	"cpl_string.h"
+	"cpl_minixml.h"
+	"cpl_multiproc.h"
+	"cpl_atomic_ops.h"
+	<stdarg.h>
+	<cmath>
+	<complex>
+	<cstdint>
+	<iterator>
+	<limits>
+	<map>
+	<memory>
+	<set>
+	<span>
+	<vector>
+	"ogr_core.h"
+	"ogr_feature.h"
+
+1752316329 /usr/local/include/gdal.h
+	"gdal_fwd.h"
+	"gdal_version.h"
+	"cpl_port.h"
+	"cpl_error.h"
+	"cpl_progress.h"
+	"cpl_virtualmem.h"
+	"cpl_minixml.h"
+	"ogr_api.h"
+	<stdbool.h>
+	<stdint.h>
+
+1752316329 /usr/local/include/gdal_fwd.h
+
+1759234366 /usr/local/include/gdal_version.h
+
+1752316329 /usr/local/include/cpl_port.h
+	"cpl_config.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<stdarg.h>
+	<string.h>
+	<ctype.h>
+	<limits.h>
+	<time.h>
+	<errno.h>
+	<locale.h>
+	<direct.h>
+	<strings.h>
+	<cmath>
+	<stddef.h>
+	<stdint.h>
+	<float.h>
+	<ieeefp.h>
+	<sal.h>
+
+1759234360 /usr/local/include/cpl_config.h
+
+1752316329 /usr/local/include/cpl_error.h
+	"cpl_port.h"
+	<stdarg.h>
+	<stdbool.h>
+	<stddef.h>
+	<memory>
+	<string>
+
+1752316329 /usr/local/include/cpl_progress.h
+	"cpl_port.h"
+
+1752316329 /usr/local/include/cpl_virtualmem.h
+	<stddef.h>
+	"cpl_port.h"
+	"cpl_vsi.h"
+
+1752316329 /usr/local/include/cpl_vsi.h
+	"cpl_port.h"
+	"cpl_progress.h"
+	<stdbool.h>
+	<unistd.h>
+	<sys/stat.h>
+	"cpl_error.h"
+
+1752316329 /usr/local/include/cpl_minixml.h
+	"cpl_port.h"
+	<memory>
+
+1752316329 /usr/local/include/ogr_api.h
+	"cpl_progress.h"
+	"cpl_minixml.h"
+	"ogr_core.h"
+	"gdal_fwd.h"
+	<stdbool.h>
+	<stddef.h>
+	<stdint.h>
+
+1752316329 /usr/local/include/ogr_core.h
+	"cpl_port.h"
+	"gdal_version.h"
+	<cmath>
+	<limits>
+
+1752316329 /usr/local/include/gdal_frmts.h
+	"cpl_port.h"
+
+1752316329 /usr/local/include/gdalsubdatasetinfo.h
+	"cpl_port.h"
+	<string>
+
+1752316329 /usr/local/include/cpl_conv.h
+	"cpl_port.h"
+	"cpl_vsi.h"
+	"cpl_error.h"
+	<type_traits>
+
+1752316329 /usr/local/include/cpl_string.h
+	"cpl_error.h"
+	"cpl_conv.h"
+	"cpl_vsi.h"
+	<stdbool.h>
+	<string>
+	<vector>
+	<iterator>
+	<memory>
+	<string_view>
+	<utility>
+
+1752316329 /usr/local/include/cpl_multiproc.h
+	"cpl_port.h"
+
+1752316329 /usr/local/include/cpl_atomic_ops.h
+	"cpl_port.h"
+
+1752316329 /usr/local/include/ogr_feature.h
+	"cpl_atomic_ops.h"
+	"gdal_fwd.h"
+	"ogr_featurestyle.h"
+	"ogr_geometry.h"
+	"ogr_geomcoordinateprecision.h"
+	<cstddef>
+	<exception>
+	<memory>
+	<string>
+	<vector>
+
+1752316329 /usr/local/include/ogr_featurestyle.h
+	"cpl_conv.h"
+	"cpl_string.h"
+	"ogr_core.h"
+
+1752316329 /usr/local/include/ogr_geometry.h
+	"cpl_conv.h"
+	"cpl_json.h"
+	"gdal_fwd.h"
+	"ogr_core.h"
+	"ogr_geomcoordinateprecision.h"
+	"ogr_spatialref.h"
+	<climits>
+	<cmath>
+	<memory>
+	<utility>
+
+1752316329 /usr/local/include/cpl_json.h
+	"cpl_progress.h"
+	"cpl_string.h"
+	<cstdint>
+	<string>
+	<vector>
+
+1752316329 /usr/local/include/ogr_geomcoordinateprecision.h
+	<map>
+	"cpl_string.h"
+
+1752316329 /usr/local/include/ogr_spatialref.h
+	"cpl_string.h"
+	"ogr_srs_api.h"
+	<cstddef>
+	<map>
+	<memory>
+	<vector>
+
+1752316329 /usr/local/include/ogr_srs_api.h
+	<stdbool.h>
+	"ogr_core.h"
+	"gdal_fwd.h"
 
