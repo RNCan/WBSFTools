@@ -13,10 +13,10 @@
 				<Option compiler="gcc" />
 				<Option parameters='&quot;ModelsPath=G:/Travaux/BioSIM_API/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
 				<Compiler>
-					<Add option="-std=gnu++20" />
 					<Add option="-m64" />
-					<Add option="-ggdb" />
 					<Add option="-g" />
+					<Add option="-std=gnu++20" />
+					<Add option="-ggdb" />
 					<Add option="-pthread" />
 					<Add option="-fopenmp" />
 					<Add option="-Wno-unknown-pragmas" />
@@ -40,7 +40,7 @@
 					<Add library="libboost_serialization-mt.a" />
 					<Add library="libgomp.a" />
 					<Add library="libws2_32.a" />
-					<Add directory="../../../../WBSFMultiPlatform/lib/Debugx64" />
+					<Add directory="../../../../WBSF/lib/Debugx64" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -73,9 +73,12 @@
 					<Add library="libboost_filesystem-mt.a" />
 					<Add library="libboost_timer-mt.a" />
 					<Add library="libboost_iostreams-mt.a" />
+					<Add library="libboost_locale-mt.a" />
+					<Add library="libboost_process-mt.a" />
+					<Add library="libboost_serialization-mt.a" />
 					<Add library="libgomp.a" />
 					<Add library="libws2_32.a" />
-					<Add directory="../../../../WBSFMultiPlatform/lib/Releasex64" />
+					<Add directory="../../../../WBSF/lib/Releasex64" />
 				</Linker>
 			</Target>
 		</Build>

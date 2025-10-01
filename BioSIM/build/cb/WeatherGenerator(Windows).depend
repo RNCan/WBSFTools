@@ -786,3 +786,648 @@
 	"Geomatic/GDAL.h"
 	"BioSIM_API.h"
 
+1758758803 source:e:\projectcp\wbsftools\biosim\biosim_api.cpp
+	<iostream>
+	<boost/algorithm/string/predicate.hpp>
+	<boost/iostreams/stream.hpp>
+	<boost/iostreams/filtering_streambuf.hpp>
+	<boost/iostreams/filter/gzip.hpp>
+	<boost/iostreams/copy.hpp>
+	<boost/locale.hpp>
+	"Basic/nlohmann/json.hpp"
+	"Basic/OpenMP.h"
+	"Basic/Shore.h"
+	"Basic/ModelStat.h"
+	"WeatherBased/NormalsDatabase.h"
+	"WeatherBased/DailyDatabase.h"
+	"WeatherBased/WeatherDefine.h"
+	"WeatherBased/WeatherGradient.h"
+	"ModelBased/CommunicationStream.h"
+	"ModelBased/ModelInput.h"
+	"ModelBased/Model.h"
+	"Geomatic/GDALDatasetEx.h"
+	"WeatherGenerator.h"
+	"BioSIM_API.h"
+
+1758200325 e:\projectcp\wbsf\src\basic\nlohmann\json.hpp
+	<algorithm>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<string>
+	<utility>
+	<vector>
+	<utility>
+	<algorithm>
+	<array>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<cstddef>
+	<exception>
+	<numeric>
+	<stdexcept>
+	<string>
+	<vector>
+	<array>
+	<cstddef>
+	<cstdint>
+	<string>
+	<utility>
+	<type_traits>
+	<stdint.h>
+	<stdint.h>
+	<version>
+	<cstdlib>
+	<cassert>
+	<compare>
+	<cstddef>
+	<array>
+	<cstddef>
+	<type_traits>
+	<utility>
+	<limits>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<cstddef>
+	<iterator>
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<cstring>
+	<string>
+	<utility>
+	<experimental/filesystem>
+	<filesystem>
+	<optional>
+	<string_view>
+	<optional>
+	<algorithm>
+	<iterator>
+	<memory>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<cstddef>
+	<iterator>
+	<tuple>
+	<utility>
+	<ranges>
+	<cstddef>
+	<string>
+	<cstdint>
+	<tuple>
+	<utility>
+	<cstdint>
+	<cstddef>
+	<functional>
+	<algorithm>
+	<array>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<bit>
+	<array>
+	<cstddef>
+	<cstring>
+	<iterator>
+	<memory>
+	<numeric>
+	<streambuf>
+	<string>
+	<type_traits>
+	<utility>
+	<cstdio>
+	<istream>
+	<cstddef>
+	<string>
+	<type_traits>
+	<utility>
+	<vector>
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<cstdint>
+	<utility>
+	<string>
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<cstddef>
+	<limits>
+	<iterator>
+	<type_traits>
+	<cstddef>
+	<iterator>
+	<utility>
+	<type_traits>
+	<algorithm>
+	<cctype>
+	<cerrno>
+	<cstdlib>
+	<iosfwd>
+	<limits>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<initializer_list>
+	<utility>
+	<algorithm>
+	<array>
+	<map>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<utility>
+	<vector>
+	<algorithm>
+	<cstddef>
+	<iterator>
+	<memory>
+	<string>
+	<vector>
+	<ios>
+	<ostream>
+	<algorithm>
+	<array>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<iomanip>
+	<type_traits>
+	<utility>
+	<array>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+	<functional>
+	<initializer_list>
+	<iterator>
+	<memory>
+	<stdexcept>
+	<type_traits>
+	<utility>
+	<vector>
+	<any>
+	<string_view>
+
+1752070242 e:\projectcp\wbsf\src\basic\openmp.h
+	<omp.h>
+
+1751118733 e:\projectcp\wbsf\src\basic\shore.h
+	"Basic/ApproximateNearestNeighbor.h"
+	"Basic/ERMsg.h"
+
+1751118733 e:\projectcp\wbsf\src\basic\approximatenearestneighbor.h
+	<mutex>
+	<boost/serialization/split_member.hpp>
+	<boost/serialization/access.hpp>
+	"Basic/UtilStd.h"
+	"Basic/Location.h"
+	"Basic/SearchResult.h"
+	"Basic/ERMsg.h"
+	"Basic/ANN/ANN.h"
+
+1759267361 e:\projectcp\wbsf\src\basic\utilstd.h
+	<cassert>
+	<map>
+	<set>
+	<unordered_map>
+	<sstream>
+	<functional>
+	<algorithm>
+	<cctype>
+	<fstream>
+	<codecvt>
+	<iomanip>
+	<cstring>
+	<filesystem>
+	<cstdint>
+	<utility>
+	"WBSFconfig.h"
+	"Basic/ERMsg.h"
+
+1751422278 e:\projectcp\wbsf\src\wbsfconfig.h
+	<cstddef>
+	<string>
+	<SDKDDKVer.h>
+
+1751115570 e:\projectcp\wbsf\src\basic\ermsg.h
+	"ERMsg/Syenvmsg.h"
+
+1758808886 e:\projectcp\wbsf\src\basic\ermsg\syenvmsg.h
+	"Erexcept.h"
+	"Sycptref.h"
+	"Symessag.h"
+
+1751115570 e:\projectcp\wbsf\src\basic\ermsg\erexcept.h
+	<string>
+
+1751115570 e:\projectcp\wbsf\src\basic\ermsg\sycptref.h
+	"Erexcept.h"
+	"Sycptref.hpp"
+
+1751115570 e:\projectcp\wbsf\src\basic\ermsg\sycptref.hpp
+
+1751115570 e:\projectcp\wbsf\src\basic\ermsg\symessag.h
+	"Erexcept.h"
+	<vector>
+	<string>
+
+1758767205 e:\projectcp\wbsf\src\basic\location.h
+	<array>
+	<boost/serialization/access.hpp>
+	<unordered_map>
+	<utility>
+	<algorithm>
+	"Basic/xml.hpp"
+	"Basic/UtilTime.h"
+	"Basic/GeoBasic.h"
+	"Basic/Callback.h"
+
+1759267361 e:\projectcp\wbsf\src\basic\xml.hpp
+	<vector>
+	"Basic/ERMsg.h"
+	"Basic/UtilStd.h"
+	"Basic/pugixml/pugixml.hpp"
+
+1751115570 e:\projectcp\wbsf\src\basic\pugixml\pugixml.hpp
+	"pugiconfig.hpp"
+	<stddef.h>
+	<exception>
+	<iterator>
+	<iosfwd>
+	<string>
+
+1751115570 e:\projectcp\wbsf\src\basic\pugixml\pugiconfig.hpp
+
+1758811991 e:\projectcp\wbsf\src\basic\utiltime.h
+	<cassert>
+	<vector>
+	<string>
+	<boost/dynamic_bitset.hpp>
+	<boost/serialization/serialization.hpp>
+	<boost/serialization/nvp.hpp>
+	"Basic/ERMsg.h"
+	"Basic/UtilStd.h"
+
+1753981733 e:\projectcp\wbsf\src\basic\geobasic.h
+	<map>
+	<vector>
+	<deque>
+	<algorithm>
+	<cfloat>
+	<boost/bimap.hpp>
+	<boost/serialization/serialization.hpp>
+	<boost/archive/text_iarchive.hpp>
+	<boost/serialization/export.hpp>
+	"WBSFconfig.h"
+	"Basic/ERMsg.h"
+	"Basic/UtilMath.h"
+
+1752070242 e:\projectcp\wbsf\src\basic\utilmath.h
+	<cmath>
+	<random>
+	<cassert>
+	<iostream>
+	<string>
+
+1751118733 e:\projectcp\wbsf\src\basic\callback.h
+	<mutex>
+	<string>
+	<algorithm>
+	<stack>
+	"Basic/Event.h"
+	"Basic/UtilStd.h"
+	"Basic/ERMsg.h"
+
+1751119000 e:\projectcp\wbsf\src\basic\event.h
+	<boost/thread.hpp>
+
+1751131573 e:\projectcp\wbsf\src\basic\searchresult.h
+	<vector>
+	"Basic/UtilMath.h"
+	"Basic/Location.h"
+	"Basic/UtilStd.h"
+	"Basic/ERMsg.h"
+
+1751115570 e:\projectcp\wbsf\src\basic\ann\ann.h
+	<cmath>
+	<iostream>
+	<cvalues>
+	<climits>
+	<cfloat>
+
+1751118733 e:\projectcp\wbsf\src\basic\modelstat.h
+	<vector>
+	<cassert>
+	"Basic/UtilMath.h"
+	"Basic/UtilTime.h"
+	"Basic/Statistic.h"
+	"Basic/Mtrx.h"
+	"ModelBased/InitialPopulation.h"
+
+1752075136 e:\projectcp\wbsf\src\basic\statistic.h
+	<cassert>
+	<vector>
+	<array>
+	<string>
+
+1756925420 e:\projectcp\wbsf\src\basic\mtrx.h
+	<cmath>
+	<climits>
+	<boost/serialization/split_member.hpp>
+	<boost/serialization/access.hpp>
+	<boost/multi_array.hpp>
+
+1751118734 e:\projectcp\wbsf\src\modelbased\initialpopulation.h
+	<vector>
+	<cassert>
+	"Basic/ModelStat.h"
+	"ModelBased/WeatherBasedSimulation.h"
+
+1751115570 e:\projectcp\wbsf\src\modelbased\weatherbasedsimulation.h
+
+1758626659 e:\projectcp\wbsf\src\weatherbased\normalsdatabase.h
+	<memory>
+	<array>
+	<deque>
+	"Basic/Location.h"
+	"Basic/SearchResult.h"
+	"WeatherBased/NormalsStation.h"
+	"WeatherBased/WeatherDatabaseOptimisation.h"
+	"WeatherBased/WeatherDatabase.h"
+
+1751118733 e:\projectcp\wbsf\src\weatherbased\normalsstation.h
+	"Basic/Location.h"
+	"WeatherBased/NormalsData.h"
+
+1751130549 e:\projectcp\wbsf\src\weatherbased\normalsdata.h
+	"Basic/ERMsg.h"
+	"WeatherBased/WeatherDefine.h"
+
+1753989330 e:\projectcp\wbsf\src\weatherbased\weatherdefine.h
+	<vector>
+	<array>
+	<cassert>
+	<bitset>
+	<boost/serialization/array.hpp>
+	<boost/serialization/bitset.hpp>
+	"Basic/ERMsg.h"
+	"Basic/UtilTime.h"
+	"Basic/Statistic.h"
+
+1758582945 e:\projectcp\wbsf\src\weatherbased\weatherdatabaseoptimisation.h
+	<deque>
+	"Basic/Location.h"
+	"Basic/Callback.h"
+	"Basic/UtilStd.h"
+	"Basic/ApproximateNearestNeighbor.h"
+	"WeatherBased/WeatherDefine.h"
+	"WeatherBased/WeatherDataSection.h"
+
+1758583089 e:\projectcp\wbsf\src\weatherbased\weatherdatasection.h
+	"boost/array.hpp"
+	"boost/serialization/access.hpp"
+	"Basic/Callback.h"
+	"WeatherBased/WeatherDefine.h"
+
+1759267361 e:\projectcp\wbsf\src\weatherbased\weatherdatabase.h
+	<deque>
+	<memory>
+	<boost/dll/shared_library.hpp>
+	<boost/dll.hpp>
+	"Basic/LRUCache.h"
+	"Basic/Callback.h"
+	"WeatherBased/WeatherStation.h"
+	"WeatherBased/WeatherDatabaseOptimisation.h"
+
+1751115570 e:\projectcp\wbsf\src\basic\lrucache.h
+	<unordered_map>
+	<list>
+	<cstddef>
+	<stdexcept>
+	<boost/bimap.hpp>
+	<boost/bimap/list_of.hpp>
+	<boost/bimap/set_of.hpp>
+	<boost/function.hpp>
+	<cassert>
+
+1751118733 e:\projectcp\wbsf\src\weatherbased\weatherstation.h
+	<cassert>
+	<vector>
+	<array>
+	<memory>
+	"Basic/ERMsg.h"
+	"Basic/Location.h"
+	"Basic/Statistic.h"
+	"WeatherBased/WeatherDataSection.h"
+	"WeatherBased/WeatherDefine.h"
+
+1751458406 e:\projectcp\wbsf\src\weatherbased\dailydatabase.h
+	"WeatherBased/WeatherDatabase.h"
+
+1754056103 e:\projectcp\wbsf\src\weatherbased\weathergradient.h
+	"Basic/ERMsg.h"
+	"Basic/SearchResult.h"
+	"WeatherBased/WeatherDefine.h"
+	"WeatherBased/NormalsDatabase.h"
+	"WeatherBased/WeatherCorrection.h"
+
+1751118733 e:\projectcp\wbsf\src\weatherbased\weathercorrection.h
+	"Basic/Location.h"
+	"Basic/Statistic.h"
+	"WeatherBased/WeatherDefine.h"
+
+1758807623 e:\projectcp\wbsf\src\modelbased\communicationstream.h
+	"Basic/Location.h"
+	"ModelBased/InputParam.h"
+	"ModelBased/WGInput.h"
+
+1758799799 e:\projectcp\wbsf\src\modelbased\inputparam.h
+	<map>
+	"Basic/ERMsg.h"
+	"Basic/UtilMath.h"
+	"Basic/UtilTime.h"
+	"Basic/UtilStd.h"
+	"Basic/xml.hpp"
+	"WeatherBased/WeatherDefine.h"
+
+1758802415 e:\projectcp\wbsf\src\modelbased\wginput.h
+	"WeatherBased/WeatherDefine.h"
+	"ModelBased/ModelOutputVariable.h"
+
+1758726853 e:\projectcp\wbsf\src\modelbased\modeloutputvariable.h
+	"Basic/UtilTime.h"
+	"Basic/xml.hpp"
+	"ModelBased/InputParam.h"
+
+1751135387 e:\projectcp\wbsf\src\modelbased\modelinput.h
+	"Basic/ERMsg.h"
+	"Basic/UtilStd.h"
+	"ModelBased/InputParam.h"
+	"ModelBased/ModelInputParameter.h"
+	"ModelBased/ParametersVariations.h"
+
+1758731092 e:\projectcp\wbsf\src\modelbased\modelinputparameter.h
+	"Basic/xml.hpp"
+	"Basic/UtilStd.h"
+	"ModelBased/SerializeRect.h"
+	"ModelBased/InputParam.h"
+
+1758718510 e:\projectcp\wbsf\src\modelbased\serializerect.h
+
+1751115570 e:\projectcp\wbsf\src\modelbased\parametersvariations.h
+	"ModelInputParameter.h"
+
+1759267361 e:\projectcp\wbsf\src\modelbased\model.h
+	<mutex>
+	<boost/dll/shared_library.hpp>
+	"WeatherBased/WeatherDefine.h"
+	"Basic/Statistic.h"
+	"ModelBased/ModelInputParameter.h"
+	"ModelBased/ModelOutputVariable.h"
+
+1758538780 e:\projectcp\wbsf\src\geomatic\gdaldatasetex.h
+	<boost/dynamic_bitset.hpp>
+	"Basic/ERMsg.h"
+	"Basic/GeoBasic.h"
+	"Geomatic/UtilGDAL.h"
+	"Geomatic/GDAL.h"
+
+1758539223 e:\projectcp\wbsf\src\geomatic\utilgdal.h
+	<boost/timer/timer.hpp>
+	"Basic/ERMsg.h"
+	"Basic/UtilStd.h"
+	"Basic/Statistic.h"
+	"Basic/GeoBasic.h"
+	"Geomatic/GDAL.h"
+
+1759267361 e:\projectcp\wbsf\src\geomatic\gdal.h
+	"gdal/gdal_priv.h"
+	"gdal/ogr_spatialref.h"
+	"gdal_priv.h"
+	"ogr_spatialref.h"
+	"/usr/local/include/gdal_priv.h"
+	"/usr/local/include/ogr_spatialref.h"
+
+1753988706 e:\projectcp\wbsftools\biosim\weathergenerator.h
+	<vector>
+	"Basic/ERMsg.h"
+	"Basic/Location.h"
+	"Geomatic/SfcGribsDatabase.h"
+	"ModelBased/WGInput.h"
+	"WeatherBased/NormalsDatabase.h"
+	"WeatherBased/HourlyDatabase.h"
+	"WeatherBased/DailyDatabase.h"
+	"WeatherBased/WeatherGradient.h"
+	"WeatherBased/WeatherGeneratorDailyKernel.h"
+
+1758538780 e:\projectcp\wbsf\src\geomatic\sfcgribsdatabase.h
+	<string>
+	<array>
+	<boost/multi_array.hpp>
+	<deque>
+	<mutex>
+	<cassert>
+	"Basic/Statistic.h"
+	"Basic/GeoBasic.h"
+	"Basic/UtilTime.h"
+	"Basic/UtilMath.h"
+	"Basic/Location.h"
+	"WeatherBased/WeatherStation.h"
+	"WeatherBased/HourlyDatabase.h"
+	"Geomatic/GDALDatasetEx.h"
+
+1751458440 e:\projectcp\wbsf\src\weatherbased\hourlydatabase.h
+	"WeatherBased/WeatherDatabase.h"
+
+1751115570 e:\projectcp\wbsf\src\weatherbased\weathergeneratordailykernel.h
+	<array>
+	"Basic/UtilStd.h"
+	"WeatherBased/WeatherDefine.h"
+	"WeatherBased/AmountPpt.h"
+	"WeatherBased/NormalsStation.h"
+
+1751133016 e:\projectcp\wbsf\src\weatherbased\amountppt.h
+	<cassert>
+	"Basic/UtilMath.h"
+
+1758202811 e:\projectcp\wbsftools\biosim\biosim_api.h
+	<string>
+	<memory>
+	"Basic/ERMsg.h"
+
+1759267385 source:e:\projectcp\wbsftools\biosim\weathergenerator.cpp
+	"Basic/Callback.h"
+	"Basic/CSV.h"
+	"Basic/OpenMP.h"
+	"WeatherBased/MTClim43.h"
+	"WeatherBased/SnowMelt.h"
+	"WeatherBased/WeatherCorrection.h"
+	"WeatherGenerator.h"
+
+1758585997 e:\projectcp\wbsf\src\basic\csv.h
+	<sstream>
+	"Basic/UtilStd.h"
+	"Basic/ERMsg.h"
+
+1751115570 e:\projectcp\wbsf\src\weatherbased\mtclim43.h
+
+1751120422 e:\projectcp\wbsf\src\weatherbased\snowmelt.h
+	<vector>
+	"Basic/UtilTime.h"
+	"WeatherBased/WeatherDefine.h"
+
+1759267385 source:e:\projectcp\wbsftools\biosim\weathergeneratormain.cpp
+	<cstdio>
+	<iostream>
+	<boost/timer/timer.hpp>
+	<boost/filesystem.hpp>
+	<boost/exception/all.hpp>
+	"Basic/UtilStd.h"
+	"Geomatic/GDAL.h"
+	"BioSIM_API.h"
+	<boost/dll/shared_library.hpp>
+
