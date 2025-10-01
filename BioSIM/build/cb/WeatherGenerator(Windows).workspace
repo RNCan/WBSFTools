@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="WeatherGenerator.cbp">
-			<Depends filename="../../../../WBSF/build/cb/Basic.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/Geomatic.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/ModelBased.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/WeatherBased.cbp" />
-		</Project>
 		<Project filename="../../../../WBSF/build/cb/Basic.cbp" />
 		<Project filename="../../../../WBSF/build/cb/Geomatic.cbp" />
 		<Project filename="../../../../WBSF/build/cb/ModelBased.cbp" />
 		<Project filename="../../../../WBSF/build/cb/WeatherBased.cbp" />
+		<Project filename="WeatherGenerator(Windows).cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
