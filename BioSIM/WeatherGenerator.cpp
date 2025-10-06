@@ -19,6 +19,7 @@
 //		in North America north of Mexico. International Journal of Biometeorology. 51:415-430.
 //
 //******************************************************************************
+//03/10/2025    Rémi Saint-Amant	Cross-platform version
 //08/01/2018	Rémi Saint-Amant	Round weather values
 //13/09/2016	Rémi Saint-Amant	Change Tair and Trng by Tmin and Tmax
 //24/02/2016	Rémi Saint-Amant	Add gribs database to the weather generator
@@ -238,7 +239,7 @@ namespace WBSF
 		return(0);
 	}
 
-	int old_ExposureIndices(float exposure_index[12], float latit, float elev, float psi)
+	void old_ExposureIndices(float exposure_index[12], float latit, float elev, float psi)
 	{
 		float expin[12];
 		float cos2lat, sin2lat;
@@ -274,7 +275,7 @@ namespace WBSF
 			if (ni > 0)
 				exposure_index[month] = exposure_index[month] / ni * maxt_elev / range95;
 		}
-		return(0);
+
 	}
 
 
@@ -746,7 +747,7 @@ namespace WBSF
 
 				float exp = old_CalculExposition(m_target.m_lat, m_target.GetSlopeInDegree(), m_target.GetAspect());
 				float exposureIndex[12] = { 0 };
-				int rep = old_ExposureIndices(exposureIndex, m_target.m_lat, m_target.m_elev, exp);
+				old_ExposureIndices(exposureIndex, m_target.m_lat, m_target.m_elev, exp);
 
 
 
@@ -1745,7 +1746,6 @@ namespace WBSF
 
 				for (size_t y = 0; y < m_tgi.GetNbYears() && msg; y++)
 				{
-					int year = m_tgi.GetFirstYear() + int(y);
 					kernel.SetSeed(m_seedMatrix[r][y]);
 
 					kernel.Generate(simulationPointVector[r][y]);

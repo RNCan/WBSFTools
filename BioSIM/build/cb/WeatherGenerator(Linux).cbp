@@ -7,12 +7,12 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../bin/Debugx64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debugx64/WeatherGenerator.exe" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="/home/remi/Documents/BioSIM_API" />
 				<Option object_output="obj/Debugx64/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters='&quot;ModelsPath=/home/remi/Project/WBSFTools/BioSIM/bin/Debugx64/Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=./Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=./Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
+				<Option parameters='&quot;ModelsPath=/home/remi/Project/WBSFInstall/Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=./Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=./Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
 				<Compiler>
 					<Add option="-std=gnu++20" />
 					<Add option="-fPIC" />
@@ -25,6 +25,7 @@
 					<Add option="-Wno-deprecated-enum-enum-conversion" />
 					<Add option="-Wno-overloaded-virtual" />
 					<Add option="-Wno-unused-result" />
+					<Add option="-D_DEBUG" />
 					<Add directory="../../../../WBSF/src" />
 				</Compiler>
 				<Linker>
@@ -43,17 +44,23 @@
 					<Add library="libgomp.a" />
 					<Add directory="../../../../WBSF/lib/Debugx64" />
 				</Linker>
+				<ExtraCommands>
+					<Add after='$if(yes){cp &quot;$(TARGET_OUTPUT_FILE)&quot; &quot;../../../../WBSFInstall/$(TARGET_OUTPUT_BASENAME).exe&quot;}' />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
-				<Option output="../../bin/Releasex64/WeatherGenerator" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Releasex64/WeatherGenerator.exe" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="/home/remi/Documents/BioSIM_API" />
 				<Option object_output="obj/Releasex64/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters='&quot;ModelsPath=/home/remi/BioSIM_API/Models/&amp;shore=/home/remi/BioSIM_API/Layers/Shore.ann&amp;DEM=/home/remi/BioSIM_API/DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=/home/remi/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=/home/remi/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
+				<Option parameters='&quot;ModelsPath=/home/remi/Project/WBSFInstall/Models/&amp;shore=/home/remi/BioSIM_API/Layers/Shore.ann&amp;DEM=/home/remi/BioSIM_API/DEM/Monde 30s(SRTM30).tif&quot;  &quot;Normals=/home/remi/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=/home/remi/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB&quot;' />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-Wall" />
 					<Add option="-std=gnu++20" />
+					<Add option="-fPIC" />
 					<Add option="-m64" />
 					<Add option="-ggdb" />
 					<Add option="-pthread" />
@@ -62,7 +69,7 @@
 					<Add option="-Wno-deprecated-enum-enum-conversion" />
 					<Add option="-Wno-overloaded-virtual" />
 					<Add option="-Wno-unused-result" />
-					<Add directory="../../../src" />
+					<Add option="-DNDEBUG" />
 					<Add directory="../../../../WBSF/src" />
 				</Compiler>
 				<Linker>
@@ -73,13 +80,19 @@
 					<Add library="libGeomatic.a" />
 					<Add library="libBasic.a" />
 					<Add library="libgdal.a" />
-					<Add library="libboost_filesystem-mt.a" />
-					<Add library="libboost_timer-mt.a" />
-					<Add library="libboost_iostreams-mt.a" />
+					<Add library="libboost_filesystem.a" />
+					<Add library="libboost_timer.a" />
+					<Add library="libboost_iostreams.a" />
+					<Add library="libboost_locale.a" />
+					<Add library="libboost_process.a" />
+					<Add library="libboost_serialization.a" />
 					<Add library="libgomp.a" />
-					<Add library="libws2_32.a" />
 					<Add directory="../../../../WBSF/lib/Releasex64" />
 				</Linker>
+				<ExtraCommands>
+					<Add after='$if(yes){cp &quot;$(TARGET_OUTPUT_FILE)&quot; &quot;../../../../WBSFInstall/$(TARGET_OUTPUT_BASENAME).exe&quot;}' />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>

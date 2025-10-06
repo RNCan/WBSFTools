@@ -1,7 +1,10 @@
 //***********************************************************************
-// program to merge Landsat image image over a period
+// Example program to generate weather and call model execution
 //
 //***********************************************************************
+//03/10/2025    Rémi Saint-Amant	Cross-platform version
+
+
 
 #include <cstdio>
 #include <iostream>
@@ -80,7 +83,7 @@ int main(int argc, char* argv[])
 
                 timer.start();
                 CModelExecutionAPI model("Model1");
-                msg = model.Initialize("Model=DegreeDay (Annual).mdl");
+                msg = model.Initialize("Model=DegreeDay(Annual).mdl");
                 cout << msg << endl;
 
 
@@ -160,6 +163,8 @@ int main(int argc, char* argv[])
     cout << endl << "Total time: " << SecondToDHMS(timer.elapsed().wall / 1e9) << endl;
 
 
+    getc(stdin);
+    //getch();
 
     return 0;
 }

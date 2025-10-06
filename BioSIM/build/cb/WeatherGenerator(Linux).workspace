@@ -2,14 +2,14 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="WeatherGenerator(Linux).cbp">
-			<Depends filename="../../../../WBSF/build/cb/Basic/Basic.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/Geomatic/Geomatic.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/ModelBased/ModelBased.cbp" />
-			<Depends filename="../../../../WBSF/build/cb/WeatherBased/WeatherBased.cbp" />
+			<Depends filename="../../../../WBSF/build/cb/Basic.cbp" />
+			<Depends filename="../../../../WBSF/build/cb/Geomatic.cbp" />
+			<Depends filename="../../../../WBSF/build/cb/ModelBased.cbp" />
+			<Depends filename="../../../../WBSF/build/cb/WeatherBased.cbp" />
 		</Project>
-		<Project filename="../../../../WBSF/build/cb/Basic/Basic.cbp" />
-		<Project filename="../../../../WBSF/build/cb/Geomatic/Geomatic.cbp" />
-		<Project filename="../../../../WBSF/build/cb/ModelBased/ModelBased.cbp" />
-		<Project filename="../../../../WBSF/build/cb/WeatherBased/WeatherBased.cbp" />
+		<Project filename="../../../../WBSF/build/cb/Basic.cbp" />
+		<Project filename="../../../../WBSF/build/cb/Geomatic.cbp" />
+		<Project filename="../../../../WBSF/build/cb/ModelBased.cbp" />
+		<Project filename="../../../../WBSF/build/cb/WeatherBased.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -1,3 +1,5 @@
+//03/10/2025    Rémi Saint-Amant	Cross-platform version
+
 
 #include <iostream>
 #include <boost/algorithm/string/predicate.hpp>
@@ -7,7 +9,7 @@
 #include <boost/iostreams/copy.hpp>
 #include <boost/locale.hpp>
 
-//#include "Basic/json/json11.hpp"
+
 #include "Basic/nlohmann/json.hpp"
 #include "Basic/OpenMP.h"
 #include "Basic/Shore.h"
@@ -88,7 +90,7 @@ namespace WBSF
 		location.m_lat = data["Location"]["Latitude"];
 		location.m_lon = data["Location"]["Longitude"];
 		location.m_elev = data["Location"]["Elevation"];
-		
+
 		//pugi::xml_document doc;
 		//doc.load_string(metadata.c_str());
 		//pugi::xml_node node = doc.root().child("Metadata").child(CLocationVector::XML_FLAG);
