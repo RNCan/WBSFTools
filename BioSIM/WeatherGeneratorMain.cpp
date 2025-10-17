@@ -160,7 +160,7 @@ int main(int argc, char* argv[])
 
 
     timer.stop();
-    cout << endl << "Total time: " << SecondToDHMS(timer.elapsed().wall / 1e9) << endl;
+    cout << endl << "Total time: " << BioSIMAPI_SecondToDHMS(timer.elapsed().wall / 1e9) << endl;
 
 
     getc(stdin);
