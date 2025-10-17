@@ -39,3 +39,6 @@
 
 # debug information files
 *.dwo
+/BioSIM/bin
+/BioSIM/build/msvc/.vs
+/BioSIM/build/msvc/obj

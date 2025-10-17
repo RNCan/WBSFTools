@@ -1387,7 +1387,10 @@ namespace WBSF
 
 
 
-
+	DLL_EXPORT std::string BioSIMAPI_SecondToDHMS(double time)
+	{
+		return SecondToDHMS(time);
+	}
 
 }
 
