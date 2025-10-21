@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommand>..\..\..\WBSFInstall\$(TargetName)$(TargetExt)</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>E:/ProjectCP/WBSFInstall</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>"ModelsPath=./Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./Layers/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerCommand>..\..\..\WBSFInstall\$(TargetName)$(TargetExt)</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>E:/ProjectCP/WBSFInstall</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommandArguments>"ModelsPath=./Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./Layers/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&amp;Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+</Project>

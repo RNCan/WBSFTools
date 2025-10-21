@@ -5,21 +5,17 @@ VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherGenerator", "WeatherGenerator.vcxproj", "{0E62BBC4-1771-4716-BD60-1EE7D33390D7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic", "..\..\..\..\WBSF\build\msvc\Basic.vcxproj", "{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic", "..\..\..\WBSF\build\msvc\Basic.vcxproj", "{6EA02A3C-E845-4DB1-A86D-80B9FAE21101}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Geomatic", "..\..\..\..\WBSF\build\msvc\Geomatic.vcxproj", "{D1E68747-C1A3-4D7A-AB38-1631BE44E796}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Geomatic", "..\..\..\WBSF\build\msvc\Geomatic.vcxproj", "{D1E68747-C1A3-4D7A-AB38-1631BE44E796}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelBased", "..\..\..\..\WBSF\build\msvc\ModelBased.vcxproj", "{6BF374D7-930E-49D4-8E56-2D4098E859D1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModelBased", "..\..\..\WBSF\build\msvc\ModelBased.vcxproj", "{6BF374D7-930E-49D4-8E56-2D4098E859D1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherBased", "..\..\..\..\WBSF\build\msvc\WeatherBased.vcxproj", "{57FF5B0D-8185-41B3-8005-D41EEFDE1028}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherBased", "..\..\..\WBSF\build\msvc\WeatherBased.vcxproj", "{57FF5B0D-8185-41B3-8005-D41EEFDE1028}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BioSim_API", "BioSim_API.vcxproj", "{4D0486CE-D20F-4EC2-A636-C00028622952}"
-	ProjectSection(ProjectDependencies) = postProject
-		{57FF5B0D-8185-41B3-8005-D41EEFDE1028} = {57FF5B0D-8185-41B3-8005-D41EEFDE1028}
-		{6BF374D7-930E-49D4-8E56-2D4098E859D1} = {6BF374D7-930E-49D4-8E56-2D4098E859D1}
-		{6EA02A3C-E845-4DB1-A86D-80B9FAE21101} = {6EA02A3C-E845-4DB1-A86D-80B9FAE21101}
-		{D1E68747-C1A3-4D7A-AB38-1631BE44E796} = {D1E68747-C1A3-4D7A-AB38-1631BE44E796}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BioSIM_API_DLL", "BioSIM_API_DLL.vcxproj", "{4D0486CE-D20F-4EC2-A636-C00028622952}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BioSIM_API_Example", "BioSIM_API_Example.vcxproj", "{320BDE26-BDF1-41FF-B1F7-7F2195494682}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +47,10 @@ Global
 		{4D0486CE-D20F-4EC2-A636-C00028622952}.Debug|x64.Build.0 = Debug|x64
 		{4D0486CE-D20F-4EC2-A636-C00028622952}.Release|x64.ActiveCfg = Release|x64
 		{4D0486CE-D20F-4EC2-A636-C00028622952}.Release|x64.Build.0 = Release|x64
+		{320BDE26-BDF1-41FF-B1F7-7F2195494682}.Debug|x64.ActiveCfg = Debug|x64
+		{320BDE26-BDF1-41FF-B1F7-7F2195494682}.Debug|x64.Build.0 = Debug|x64
+		{320BDE26-BDF1-41FF-B1F7-7F2195494682}.Release|x64.ActiveCfg = Release|x64
+		{320BDE26-BDF1-41FF-B1F7-7F2195494682}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

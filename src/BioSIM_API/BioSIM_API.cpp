@@ -11,7 +11,7 @@
 
 
 #include "Basic/nlohmann/json.hpp"
-#include "Basic/OpenMP.h"
+//#include "Basic/OpenMP.h"
 #include "Basic/Shore.h"
 #include "Basic/ModelStat.h"
 
@@ -19,6 +19,8 @@
 #include "WeatherBased/DailyDatabase.h"
 #include "WeatherBased/WeatherDefine.h"
 #include "WeatherBased/WeatherGradient.h"
+#include "WeatherBased/WeatherGenerator.h"
+
 
 #include "ModelBased/CommunicationStream.h"
 #include "ModelBased/ModelInput.h"
@@ -26,12 +28,7 @@
 
 #include "Geomatic/GDALDatasetEx.h"
 
-
-#include "WeatherGenerator.h"
 #include "BioSIM_API.h"
-
-
-
 
 
 using namespace std;
@@ -343,7 +340,7 @@ namespace WBSF
 					size_t o = distance(begin(PARAM_NAME), it);
 					switch (o)
 					{
-					case VARIABLES:				m_variables = option[1]; ReplaceString(m_variables, "+", " ");  break;
+					case VARIABLES:				m_variables = option[1]; m_variables = ReplaceString(m_variables, "+", " ");  break;
 					case SOURCE_TYPE:
 					{
 						if (IsEqual(option[1], "FromNormals"))
@@ -1238,7 +1235,7 @@ namespace WBSF
 		if (m_pModel.get() == nullptr)
 			return "Model is not define yet. Call Initialize first";
 		string variable = m_pModel->m_variables.to_string();
-		ReplaceString(variable, " ", "+");
+		variable = ReplaceString(variable, " ", "+");
 
 		return ANSI_UTF8(variable);
 	}

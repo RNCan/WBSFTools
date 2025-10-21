@@ -12,13 +12,16 @@
 #include <boost/timer/timer.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/exception/all.hpp>
+//#include <boost/dll/shared_library.hpp>
+
 
 #include "Basic/UtilStd.h"
 #include "Geomatic/GDAL.h"
 #include "BioSIM_API.h"
-#include <boost/dll/shared_library.hpp>
 
-//"ModelsPath=E:/ProjectCP/WBSFTools/BioSIM/bin/Debugx64/Models/&shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"
+
+
+//"ModelsPath=./Models/&shore=./Layers/Shore.ann&DEM=./Layers/Monde 30s(SRTM30).tif"  "Normals=G:/Travaux/BioSIM_API/Weather/Normals/World 1991-2020.NormalsDB&Daily=G:/Travaux/BioSIM_API/Weather/Daily/Demo 2008-2010.DailyDB"
 
 
 
@@ -34,6 +37,8 @@ using namespace WBSF;
 //***********************************************************************
 int main(int argc, char* argv[])
 {
+    //_CrtSetDbgFlag(_CRTDBG_CHECK_ALWAYS_DF| _CRTDBG_DELAY_FREE_MEM_DF);
+
     boost::timer::cpu_timer timer;
     timer.start();
 
@@ -71,7 +76,7 @@ int main(int argc, char* argv[])
             cout << "Time to initialize Weather Generator: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
 
             timer.start();
-            CTeleIO WGout = WG.Generate("Compress=0&Variables=T&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
+            CTeleIO WGout = WG.Generate("Compress=0&Variables=TN+T+TX&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
             msg = WGout.m_msg;
             cout << msg << endl;
 
@@ -84,7 +89,9 @@ int main(int argc, char* argv[])
                 timer.start();
                 CModelExecutionAPI model("Model1");
                 msg = model.Initialize("Model=DegreeDay(Annual).mdl");
+                //msg = model.Initialize("Model=CCBio(Annual).mdl");
                 cout << msg << endl;
+                CTeleIO modelOut = model.Execute("Compress=0", WGout);
 
 
 
@@ -103,7 +110,7 @@ int main(int argc, char* argv[])
                     timer.start();
                     CTeleIO WGout = WG.Generate("Compress=" + compress_str + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1");
                     cout << WGout.m_msg << endl;
-
+                    
                     if (WGout.m_msg == "Success")
                     {
                         cout << "Time to generate weather: " << timer.elapsed().wall / 1e9 << " s" << endl << endl;
@@ -160,7 +167,7 @@ int main(int argc, char* argv[])
 
 
     timer.stop();
-    cout << endl << "Total time: " << BioSIMAPI_SecondToDHMS(timer.elapsed().wall / 1e9) << endl;
+    cout << endl << "Total time: " << SecondToDHMS(timer.elapsed().wall / 1e9) << endl;
 
 
     getc(stdin);
