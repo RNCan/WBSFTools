@@ -37,8 +37,6 @@ using namespace WBSF;
 //***********************************************************************
 int main(int argc, char* argv[])
 {
-    //_CrtSetDbgFlag(_CRTDBG_CHECK_ALWAYS_DF| _CRTDBG_DELAY_FREE_MEM_DF);
-
     boost::timer::cpu_timer timer;
     timer.start();
 
@@ -89,7 +87,6 @@ int main(int argc, char* argv[])
                 timer.start();
                 CModelExecutionAPI model("Model1");
                 msg = model.Initialize("Model=DegreeDay(Annual).mdl");
-                //msg = model.Initialize("Model=CCBio(Annual).mdl");
                 cout << msg << endl;
                 CTeleIO modelOut = model.Execute("Compress=0", WGout);
 
@@ -147,23 +144,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    //Create a mergeImages object
-    //CWeatherGenerationApp WeatherGenerator;
-
-    //ERMsg msg = WeatherGenerator.m_options.ParseOption(argc, argv);
-
-    //if (!WeatherGenerator.m_options.m_bQuiet)
-    //	cout << WeatherGenerator.GetDescription() << endl;
-
-
-    //if (msg)
-    //	msg = WeatherGenerator.Execute();
-
-    //if (!msg)
-    //{
-    //	PrintMessage(msg);
-    //	return -1;
-    //}
+   
 
 
     timer.stop();
@@ -171,7 +152,7 @@ int main(int argc, char* argv[])
 
 
     getc(stdin);
-    //getch();
+    
 
     return 0;
 }

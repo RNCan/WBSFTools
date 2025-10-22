@@ -77,20 +77,29 @@ namespace TCLAP
 			return *this;
 		}
 
-		std::ostream& print(std::ostream& os) const {
+		const T& operator[](size_t i) const
+		{
+			assert(i < LEN);
+			return v[i];
+		}
+
+
+		std::ostream& print(std::ostream& os) const 
+		{
 			std::copy(v, v + LEN, std::ostream_iterator<T>(os, ", "));
 			return os;
 		}
 
 	protected:
 		// typedef TCLAP::StringLike ValueCategory;
-		T v[LEN];
+		std::array<T, LEN> v;
 
 	};
 }
 namespace WBSF
 {
-	
+	class CGDALDatasetEx;
+	class CGlobalData;
 
 	class CWeatherGeneratorOption : public std::map < std::string, std::unique_ptr<TCLAP::Arg>>
 	{
@@ -124,23 +133,77 @@ namespace WBSF
 
 		void Init(TCLAP::CmdLine& cmd);
 		ERMsg ParseOption(int argc, char* argv[]);
-		//ERMsg ProcessOption(int& i, int argc, char* argv[]);
 
 
-		//xstd::vector<std::string> m_equations;
-		//options;
+		/*template <class T>
+		ValueArg<T>* ValueArg(const std::string& name)const 
+		{
+			return static_cast<ValueArg<T>*> this->at(name);
+		}*/
+
+
 		
-		//std::unique_ptr<TCLAP::ValueArg<std::string>> pGlobal;
-		//std::unique_ptr < TCLAP::SwitchArg> pVerbose;
+		TCLAP::ValueArg<std::string>* GetValueArg(const std::string& name)const
+		{
+			return static_cast<TCLAP::ValueArg<std::string>*> (this->at(name).get());
+		}
 
-		CLocationVector m_loc;
+		template<typename T>
+		const T& Get(const std::string& name)const
+		{
+			return static_cast<TCLAP::ValueArg<T>*> (this->at(name).get())->getValue();
+		}
+
+		const std::vector<std::string>& GetFilesArg()const
+		{
+			return static_cast<TCLAP::UnlabeledMultiArg<std::string>*> (this->at("Files").get())->getValue();
+		}
+
+
+		ERMsg GetLoc(const CGlobalData& global, CLocationVector& loc)const;
+		ERMsg GetWGInput(const CGlobalData& global, CWGInput& WGInput)const;
+		
+		//CLocationVector m_loc;
 	};
 
 
 
-	typedef std::deque < std::vector<float>> OutputData;
+	class CGlobalData
+	{
+	public:
 
+		enum TParam { MODELS_PATH, NORMALS_PATH, DAILY_PATH, HOURLY_PATH, SHORE, DEM, DAILY_CACHE_SIZE, NB_PAPAMS };
+		static const char* NAME[NB_PAPAMS];
+
+
+		CGlobalData() { clear(); }
+		void clear();
+
+		ERMsg Init(const std::string& str_init);
+		ERMsg parse(const std::string& str_init);
+
+
+
+		std::string m_model_path;
+		std::string m_normal_path;
+		std::string m_daily_path;
+		std::string m_hourly_path;
+		std::string m_shore_file_path;
+		std::string m_DEM_file_path;
+		size_t m_daily_cache_size;
+
+
+		ERMsg ComputeElevation(double latitude, double longitude, double& elevation)const;
+		ERMsg ComputeShoreDistance(double latitude, double longitude, double& shore_distance)const;
+		//ERMsg ComputeHorizon(double latitude, double longitude, double& elevation);
+
+		std::shared_ptr<CGDALDatasetEx> m_pDEM;
+	};
+
+	//typedef std::deque < std::vector<float>> OutputData;
 	//typedef std::vector<CGDALDatasetEx> CGDALDatasetExVector;
+	class CWeatherGenerator;
+	typedef std::shared_ptr<CWeatherGenerator> CWeatherGeneratorPtr;
 
 	class CWeatherGeneratorApp
 	{
@@ -148,13 +211,13 @@ namespace WBSF
 
 		ERMsg Execute();
 
-		//std::string GetDescription()
-		//{
-		//    return  std::string("WeatherGeneratorImages version ") + VERSION + " (" + __DATE__ + ")";
-		//}
+
+		ERMsg InitializeWG(CWeatherGeneratorPtr& pWG)const;
+		
+
 
 		CWeatherGeneratorOption m_options;
 
-
+		CGlobalData m_global;
 	};
 }

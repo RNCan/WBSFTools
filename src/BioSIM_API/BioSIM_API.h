@@ -90,7 +90,7 @@ namespace WBSF
 			m_compress = compress;		//if output is compress or not
 			m_msg = msg;		//error message
 			m_comment = comment;	//comments
-			m_metadata = metadata;	//output metadatan in XML
+			m_metadata = metadata;	//output metadata in XML
 			m_data = data;	//output data 
 		}
 
@@ -99,7 +99,7 @@ namespace WBSF
 		bool m_compress;		//if output is compress or not
 		std::string m_msg;		//error message
 		std::string m_comment;	//comments
-		std::string m_metadata;	//output metadatan in XML
+		std::string m_metadata;	//output metadata in XML
 		std::string m_data;		//output data 
 
 	};
