@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.cpp" />
+    <ClCompile Include="..\..\WeatherGenerator\WeatherGeneratorApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.h" />
+    <ClInclude Include="..\..\WeatherGenerator\WeatherGeneratorApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">

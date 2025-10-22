@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BioSIM_API\BioSIM_API_Example.cpp" />
+    <ClCompile Include="..\..\BioSIM_API\BioSIM_API_Example.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">

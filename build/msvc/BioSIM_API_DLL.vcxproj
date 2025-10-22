@@ -101,11 +101,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BioSIM_API\BioSIM_API.cpp" />
-    <ClCompile Include="..\..\src\BioSIM_API\dllmain.cpp" />
+    <ClCompile Include="..\..\BioSIM_API\BioSIM_API.cpp" />
+    <ClCompile Include="..\..\BioSIM_API\dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\BioSIM_API\BioSIM_API.h" />
+    <ClInclude Include="..\..\BioSIM_API\BioSIM_API.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">
