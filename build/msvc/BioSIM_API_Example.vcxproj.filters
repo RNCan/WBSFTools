@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\BioSIM_API\BioSIM_API_Example.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="..\..\BioSIM_API\BioSIM_API_Example.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

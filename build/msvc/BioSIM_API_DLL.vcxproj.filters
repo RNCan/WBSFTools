@@ -7,16 +7,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BioSIM_API\BioSIM_API.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\BioSIM_API\dllmain.cpp">
+    <ClCompile Include="..\..\BioSIM_API\BioSIM_API.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\BioSIM_API\BioSIM_API.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\BioSIM_API\BioSIM_API.h" />
   </ItemGroup>
 </Project>
