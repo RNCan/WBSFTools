@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Use the GLOB command to get all the source files
-set(SOURCE_FILES BioSIM_API.h BioSIM_API.cpp dllmain.cpp)
+set(SOURCE_FILES BioSIM_API.h BioSIM_API.cpp)
 
 include_directories( 
   ${CMAKE_CURRENT_SOURCE_DIR}   
@@ -23,10 +23,10 @@ add_library(BioSIM_API SHARED
 )
 
 target_compile_definitions(BioSIM_API PRIVATE
-	BIOSIM_API_EXPORT
+	BIOSIM_API_EXPORT	
 )
 
-target_link_libraries(BioSIM_API PUBLIC
+target_link_libraries(BioSIM_API PRIVATE
 	Boost::thread		
 	Boost::chrono
 	Boost::filesystem
