@@ -11,13 +11,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.cpp">
+    <ClCompile Include="..\..\WeatherGenerator\WeatherGeneratorApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\WeatherGenerator\WeatherGeneratorApp.h" />
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\BioSIM_API\BioSIM_API_Example.cpp" />
+    <ClCompile Include="..\..\BioSIM_API\BioSIM_API_Example.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">
@@ -78,7 +78,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>

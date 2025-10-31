@@ -4,11 +4,14 @@
 #include <memory>
 #include "Basic/ERMsg.h"
 
-
-#ifdef BIOSIM_API_EXPORT
-#define DLL_EXPORT __declspec(dllexport)
+#if defined(_WIN32) || defined(_WIN64)
+	#ifdef BIOSIM_API_EXPORT
+	#define DLL_EXPORT __declspec(dllexport)
+	#else
+	#define DLL_EXPORT __declspec(dllimport)
+	#endif
 #else
-#define DLL_EXPORT __declspec(dllimport)
+	#define DLL_EXPORT __attribute__((visibility("default")))
 #endif
 
 //#define DLL_EXPORT 

@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.cpp" />
+    <ClCompile Include="..\..\WeatherGenerator\WeatherGeneratorApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\WeatherGenerator\WeatherGeneratorApp.h" />
+    <ClInclude Include="..\..\WeatherGenerator\WeatherGeneratorApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">
@@ -80,7 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BIOSIM_API_EXPORT;_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BIOSIM_API_EXPORT;_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
