@@ -11,12 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\WeatherGenerator\WeatherGeneratorApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\WeatherGenerator\WeatherGeneratorApp.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\WBSF\build\msvc\Basic.vcxproj">
       <Project>{6ea02a3c-e845-4db1-a86d-80b9fae21101}</Project>
     </ProjectReference>
@@ -29,6 +23,12 @@
     <ProjectReference Include="..\..\..\WBSF\build\msvc\WeatherBased.vcxproj">
       <Project>{57ff5b0d-8185-41b3-8005-d41eefde1028}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\WeatherGenerator\WeatherGeneratorApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\WeatherGenerator\WeatherGeneratorApp.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -80,7 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BIOSIM_API_EXPORT;_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BIOSIM_API_EXPORT;_CRT_SECURE_NO_WARNINGS; _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\gdal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>

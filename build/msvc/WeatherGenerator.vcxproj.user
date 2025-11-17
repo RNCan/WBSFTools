@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>-l "[{lat:45,lon:-71},{lat:46,lon:-73}]" -g "ModelsPath=E:/ProjectCP/WBSFTools/BioSIM/bin/Debugx64/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif&amp;NormalsPath=G:/Travaux/BioSIM_API/Weather/Normals/&amp;DailyPath=G:/Travaux/BioSIM_API/Weather/Daily/"  -N "World 1991-2020.NormalsDB" -O "Demo 2008-2010.DailyDB"  G:/Travaux/BioSIM_API/Output.csv</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-l "[{lat:45,lon:-71},{lat:46,lon:-73}]" -g "ModelsPath=.Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./DEM/Monde 30s(SRTM30).tif&amp;NormalsPath=./Weather/Normals/&amp;DailyPath=./Weather/Daily/"  -N "World 1991-2020.NormalsDB.bin.gz" -D "World 2024-2025.DailyDB.bin.gz"  ./Output2.csv</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>G:/Travaux/BioSIM_API/</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>-l "[{lat:45,lon:-71},{lat:46,lon:-73}]" -g "ModelsPath=E:/ProjectCP/WBSFTools/BioSIM/bin/Debugx64/Models/&amp;shore=G:/Travaux/BioSIM_API/Layers/Shore.ann&amp;DEM=G:/Travaux/BioSIM_API/DEM/Monde 30s(SRTM30).tif&amp;NormalsPath=G:/Travaux/BioSIM_API/Weather/Normals/&amp;DailyPath=G:/Travaux/BioSIM_API/Weather/Daily/"  -N "World 1991-2020.NormalsDB" -O "Demo 2008-2010.DailyDB"  G:/Travaux/BioSIM_API/Output.csv</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-l "[{lat:45,lon:-71},{lat:46,lon:-73}]" -g "ModelsPath=.Models/&amp;shore=./Layers/Shore.ann&amp;DEM=./DEM/Monde 30s(SRTM30).tif&amp;NormalsPath=./Weather/Normals/&amp;DailyPath=./Weather/Daily/"  -N "World 1991-2020.NormalsDB.bin.gz" -D "World 2024-2025.DailyDB.bin.gz"  ./Output2.csv</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>G:/Travaux/BioSIM_API/</LocalDebuggerWorkingDirectory>
   </PropertyGroup>

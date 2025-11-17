@@ -2,11 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{3318ce8a-43ae-440b-9098-b967b6821f1e}</UniqueIdentifier>
+      <UniqueIdentifier>{6135d618-72bb-496d-af2c-610430e55a7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\BioSIM_API\BioSIM_API_Example.cpp">
+    <ClCompile Include="..\..\CompressWeather\CompressWeatherApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

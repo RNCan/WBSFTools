@@ -9,7 +9,7 @@
 #include "WeatherBased/DailyDatabase.h"
 #include "WeatherBased/WeatherDefine.h"
 
-
+//"G:\Travaux\BioSIM_API\Weather\Normals\World 1991-2020.NormalsDB" "G:\Travaux\BioSIM_API\Weather\Normals\World 1991-2020.NormalsDB.bin.gz"
 
 
 using namespace std;
