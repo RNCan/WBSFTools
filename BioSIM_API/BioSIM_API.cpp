@@ -27,6 +27,7 @@
 #include "ModelBased/Model.h"
 
 #include "Geomatic/GDALDatasetEx.h"
+#include "Geomatic/UtilGDAL.h"
 
 #include "BioSIM_API.h"
 
@@ -160,6 +161,8 @@ namespace WBSF
 	{
 		ERMsg msg;
 
+		RegisterGDAL(); 
+
 		if (pGLOBAL_DLL_DATA.get() == nullptr)
 			pGLOBAL_DLL_DATA.reset(new CGlobalDLLData);
 
@@ -176,37 +179,6 @@ namespace WBSF
 					if (!WBSF::IsPathEndOk(pGLOBAL_DLL_DATA->m_model_path))
 						pGLOBAL_DLL_DATA->m_model_path += "/";
 				}
-
-				//if (!pGLOBAL_DLL_DATA->m_shore_file_path.empty())
-				//{
-
-					//m_CS.Enter();
-					/*if (CShore::GetShore().get() == nullptr)
-					{
-						if (m_init.IsAzure())
-						{
-							blob_client client(account, 16);
-
-							std::stringstream azure_stream;
-							auto ret = client.download_blob_to_stream(m_init.m_container_name, m_init.m_shore_name, 0, 0, azure_stream).get();
-							if (ret.success())
-							{
-								CApproximateNearestNeighborPtr pShore = make_shared<CApproximateNearestNeighbor>();
-
-								*pShore << azure_stream;
-								CShore::SetShore(pShore);
-							}
-							else
-							{
-								msg.ajoute("Failed to download shore, error: " + ret.error().code + ", " + ret.error().code_name);
-							}
-						}
-						else
-						{
-							msg += CShore::SetShore(m_init.m_shore_name);
-						}
-					}*/
-
 
 
 				msg += CShore::SetShore(pGLOBAL_DLL_DATA->m_shore_file_path);
@@ -334,7 +306,8 @@ namespace WBSF
 			vector<string> option = Tokenize(args[i], "=");
 			if (option.size() == 2)
 			{
-				auto it = std::find(begin(PARAM_NAME), end(PARAM_NAME), MakeUpper(option[0]));
+				//auto it = std::find(begin(PARAM_NAME), end(PARAM_NAME), MakeUpper(option[0]));
+				auto it = std::find_if(begin(PARAM_NAME), end(PARAM_NAME), [&str1 = option[0]](const auto& str2) { return boost::iequals(str1, str2); });
 				if (it != end(PARAM_NAME))
 				{
 					size_t o = distance(begin(PARAM_NAME), it);
@@ -918,7 +891,8 @@ namespace WBSF
 			vector<string> option = Tokenize(args[i], "=");
 			if (option.size() == 2)
 			{
-				auto it = std::find(begin(PARAM_NAME), end(PARAM_NAME), MakeUpper(option[0]));
+				//auto it = std::find(begin(PARAM_NAME), end(PARAM_NAME), MakeUpper(option[0]));
+				auto it = std::find_if(begin(PARAM_NAME), end(PARAM_NAME), [&str1 = option[0]](const auto& str2) { return boost::iequals(str1, str2); });
 				if (it != end(PARAM_NAME))
 				{
 					size_t o = distance(begin(PARAM_NAME), it);
@@ -983,7 +957,7 @@ namespace WBSF
 	//******************************************************************************************************************************
 
 
-	const char* CModelExecutionAPI::NAME[NB_PAPAMS] = { "MODEL" };
+	const std::array<const char*, CModelExecutionAPI::NB_PAPAMS> CModelExecutionAPI::PARAM_NAME = { "MODEL" };
 
 
 	CModelExecutionAPI::CModelExecutionAPI(const std::string&)
@@ -1005,10 +979,12 @@ namespace WBSF
 				vector<string> option = Tokenize(args[i], "=");
 				if (option.size() == 2)
 				{
-					auto it = std::find(begin(NAME), end(NAME), MakeUpper(option[0]));
-					if (it != end(NAME))
+					string key = Trim(option[0]);
+					
+					auto it = std::find_if(PARAM_NAME.begin(), PARAM_NAME.end(), [&str1 = key](const auto& str2) { return boost::iequals(str1, str2); });
+					if (it != PARAM_NAME.end())
 					{
-						size_t o = distance(begin(NAME), it);
+						size_t o = distance(PARAM_NAME.begin(), it);
 						switch (o)
 						{
 						case MODEL:
@@ -1016,7 +992,7 @@ namespace WBSF
 
 							m_pModel.reset(new CModel);
 
-							string model_file_path = option[1];
+							string model_file_path = Trim(option[1]);
 							if (WBSF::GetPath(model_file_path).empty() && !pGLOBAL_DLL_DATA->m_model_path.empty())
 							{
 								model_file_path = pGLOBAL_DLL_DATA->m_model_path + model_file_path;

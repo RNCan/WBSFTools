@@ -229,7 +229,7 @@ namespace WBSF
 	public:
 
 		enum TParam { MODEL, NB_PAPAMS };
-		static const char* NAME[NB_PAPAMS];
+		static const std::array<const char*, NB_PAPAMS> PARAM_NAME;
 
 		CModelExecutionAPI(const std::string &);
 		std::string Initialize(const std::string& str_options);
