@@ -161,7 +161,7 @@ namespace WBSF
 	{
 		ERMsg msg;
 
-		RegisterGDAL(); 
+		GDALAllRegister();
 
 		if (pGLOBAL_DLL_DATA.get() == nullptr)
 			pGLOBAL_DLL_DATA.reset(new CGlobalDLLData);

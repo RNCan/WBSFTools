@@ -25,7 +25,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <ProjectName>Test</ProjectName>
+    <ProjectName>BioSIM_APITest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -66,7 +66,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\WBSF\src;..\BioSIM_API;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;C:\local\gtest-1-8-1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;..\..\BioSIM_API;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;C:\local\gtest-1-8-1</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -100,7 +100,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\WBSF\src;..\BioSIM_API;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;C:\local\gtest-1-8-1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\WBSF\src;..\..\BioSIM_API;C:\local\boost_1_89_0;C:\local\gdal-3-11-3\Include;C:\local\gtest-1-8-1</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -113,14 +113,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BioSIM_APITest.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="../../BioSIM_APITest/BioSIM_APITest.cpp" />
+    <ClCompile Include="../../BioSIM_APITest/main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BioSIM_APITest.h" />
+    <ClInclude Include="../../BioSIM_APITest/BioSIM_APITest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\build\msvc\BioSIM_API_DLL.vcxproj">
+    <ProjectReference Include="BioSIM_API_DLL.vcxproj">
       <Project>{4d0486ce-d20f-4ec2-a636-c00028622952}</Project>
     </ProjectReference>
   </ItemGroup>

@@ -43,3 +43,8 @@
 /BioSIM/bin
 /BioSIM/build/msvc/.vs
 /BioSIM/build/msvc/obj
+/build/msvc/.vs
+/.vs
+/out
+/build/msvc/obj
+/build/msvc/bin

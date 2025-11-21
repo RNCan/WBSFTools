@@ -19,7 +19,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompressWeather", "Compress
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherGenerator", "WeatherGenerator.vcxproj", "{0E62BBC4-1771-4716-BD60-1EE7D33390D7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "..\..\Test\WBSToolsTest.vcxproj", "{C6951129-4F97-479E-BBFB-06A855E90FDC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BioSIM_APITest", "BioSIM_APITest.vcxproj", "{C6951129-4F97-479E-BBFB-06A855E90FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
