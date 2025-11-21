@@ -46,3 +46,5 @@
 /build/msvc/.vs
 /.vs
 /out
+/build/msvc/obj
+/build/msvc/bin
