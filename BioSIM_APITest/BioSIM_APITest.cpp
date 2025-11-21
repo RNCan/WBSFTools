@@ -40,7 +40,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test02_WeatherGenerator)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2008-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -52,7 +52,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test03_Model)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2008-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";

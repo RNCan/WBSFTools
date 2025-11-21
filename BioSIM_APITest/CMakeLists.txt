@@ -30,14 +30,6 @@ target_link_libraries(BioSIM_APITest PUBLIC
 
 add_dependencies(BioSIM_APITest DegreeDay) # inform cmake that we need to build DegreeDay before running the tests
 
-if (WIN32)
-# Copy the required DLLs to the output directory after build
-  #get_property(BIOSIM_API_OUTPUT_DIR TARGET BioSIM_API RUNTIME_OUTPUT_DIRECTORY_<CONFIG>)
-  #add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_directory "${BIOSIM_API_OUTPUT_DIR}" 
-  #    "$<TARGET_FILE_DIR:BioSIM_APITest>"
-#	   COMMAND_EXPAND_LISTS
-# )
-
 add_custom_command(TARGET BioSIM_APITest POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             "$<TARGET_FILE_DIR:BioSIM_API>"
@@ -46,13 +38,13 @@ add_custom_command(TARGET BioSIM_APITest POST_BUILD
 
 
   # Copy the test data folder to the output directory after build
-add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/testData" 
-     "$<TARGET_FILE_DIR:BioSIM_APITest>/testData"
+add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/testData 
+     $<TARGET_FILE_DIR:BioSIM_APITest>/testData
 	 COMMAND_EXPAND_LISTS	 
 )
 
 add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy $<TARGET_FILE:DegreeDay> 
-     "$<TARGET_FILE_DIR:BioSIM_APITest>/testData/Models"
+     $<TARGET_FILE_DIR:BioSIM_APITest>/testData/Models
 	 COMMAND_EXPAND_LISTS
 )
-endif()
+
