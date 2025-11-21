@@ -22,45 +22,11 @@ namespace BioSIM_APITest
   {
   }
 
-  //class BioSIMCoreTests : public testing::Test {
-  //protected:
-  //  // You can remove any or all of the following functions if their bodies would
-  //  // be empty.
-
-  //  BioSIMCoreTests() {
-  //    // You can do set-up work for each test here.
-
-  //  }
-
-  //  ~BioSIMCoreTests() override {
-  //    // You can do clean-up work that doesn't throw exceptions here.
-  //  }
-
-  //  // If the constructor and destructor are not enough for setting up
-  //  // and cleaning up each test, you can define the following methods:
-
-  //  void SetUp() override {
-  //    // Code here will be called immediately after the constructor (right
-  //    // before each test).
-
-  //  }
-
-  //  void TearDown() override {
-  //    // Code here will be called immediately after each test (right
-  //    // before the destructor).
-  //  }
-
-  //  static void SetUpTestSuite() {
-  //    // Code here will be called once for the entire test suite.
-  //    
-  //  }
-
-  //  static void TearDownTestSuite() {
-  //    // Code here will be called once for the entire test suite.
-  //  }
-
-  //};
-	TEST(BioSIMCoreTests, Test01_GetNormals)
+  // IMPORTANT
+  // The following integration test suite uses testData files that must be present in the working directory.  This data is automatically copied by a post-build command in the CMakeLists.txt file.
+  // Also, any model DLL that the test suite depends on must be specified as a dependency and in a post-build command in the CMakeLists.txt file to ensure it is built and copied before the test suite is run.
+  // IMPORTANT
+  TEST(BioSIMCoreTests, Test01_GetNormals)
 	{
     std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
@@ -74,7 +40,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test02_WeatherGenerator)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2005-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2008-2010.DailyDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -86,13 +52,13 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test03_Model)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2005-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData\\Weather\\Daily\\Demo 2008-2010.DailyDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";
 
     WBSF::CModelExecutionAPI model("");
-    options = "Model = DegreeDay(Annual).mdl";
+    options = "Model=testData/Models/DegreeDay(Annual).mdl";
     msg = model.Initialize(options);
     EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";
 
