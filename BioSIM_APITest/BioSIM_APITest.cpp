@@ -58,7 +58,7 @@ namespace BioSIM_APITest
     EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";
 
     WBSF::CModelExecutionAPI model("");
-    options = "Model=testData/Models/DegreeDay(Annual).mdl";
+    options = "Model=Models/DegreeDay(Annual).mdl";
     msg = model.Initialize(options);
     EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";
 

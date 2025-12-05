@@ -30,3 +30,5 @@ target_link_libraries(BioSIM_API PUBLIC
 	WBSFModelBased
 	WBSFWeatherBased
 )
+
+add_dependencies(BioSIM_API DegreeDay) # inform cmake that we need to build DegreeDay before running the tests
