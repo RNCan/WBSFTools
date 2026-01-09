@@ -74,5 +74,13 @@ namespace BioSIM_APITest
     std::string s = modelOut.m_data;
     EXPECT_TRUE(s.starts_with("Year,DD")) << "Result of DegreeDay model should start with [Year,DD]";
   }
+
+  TEST(BioSIMCoreTests, Test04_HemlockLooperModelInit)
+  {    
+    WBSF::CModelExecutionAPI model("");
+    std::string options = "Model=Models/HemlockLooper.mdl";
+    std::string msg = model.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";    
+  }
 }
 
