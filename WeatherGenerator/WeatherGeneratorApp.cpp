@@ -296,7 +296,8 @@ namespace WBSF
 			vector<string> variables = { "TN", "T", "TX", "P", "TD", "H", "WS", "WD", "R", "Z", "S", "SD", "SWE", "WS2", "A1", "A2" };
 			const ValuesConstraint<string> variables_type(variables);
 			me["Variables"].reset(new ValueArg<string>("v", "Vars", "Select weather variables (separated by space). \"TN T TX P\" by default.", false, "TN T TX P", &variables_type));
-			me["Models"].reset(new MultiArg<string>("w", "Models", "Select weather variables from models list (separate by space) instead of -v option. Example: \"DegreeDay(Annual) SpruceBudwormBiology\"", false, "models name list"));
+			me["Models"].reset(new ValueArg<string>("w", "Models", "Select weather variables from models list (separate by space) instead of -v option. Example: \"DegreeDay(Annual) SpruceBudwormBiology\".", false, "", "models name list"));
+			//me["Models"].reset(new MultiArg<string>("w", "Models", "Select weather variables from models list (separate by space) instead of -v option. Example: \"DegreeDay(Annual) SpruceBudwormBiology\"", false, "models name list"));
 
 			EitherOf g2;
 			g2.add(*me["Variables"]);
@@ -478,6 +479,10 @@ namespace WBSF
 		WGInput.m_variables = Get<string>("Variables");
 		if (at("Models")->isSet())
 		{
+			//TCLAP::MultiArg<std::string>* pTest = static_cast<TCLAP::MultiArg<std::string>*> (this->at("Models").get());
+			//vector<string> test = pTest->getValue(); 
+			//TCLAP::ValueArg<std::string>* pTest2 = GetValueArg("Models");
+
 			vector<string> models = Tokenize(Get<string>("Models"), " ");
 
 
@@ -486,6 +491,7 @@ namespace WBSF
 			{
 				CModel model;
 
+				
 				string file_path = global.m_model_path + models[m] + ".mdl";
 				msg += model.Load(file_path);
 
