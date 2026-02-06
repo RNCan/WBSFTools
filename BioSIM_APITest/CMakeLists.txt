@@ -48,7 +48,7 @@ add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_direct
 	 COMMAND_EXPAND_LISTS
 )
 
-add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy $<TARGET_FILE:DegreeDay> $<TARGET_FILE:HemlockLooper>
+add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy $<TARGET_FILE:DegreeDay> $<TARGET_FILE:HemlockLooper> $<TARGET_FILE:Climatic>
      $<TARGET_FILE_DIR:BioSIM_APITest>/Models
 	 COMMAND_EXPAND_LISTS
 )

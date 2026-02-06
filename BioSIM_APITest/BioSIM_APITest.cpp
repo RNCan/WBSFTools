@@ -93,7 +93,7 @@ namespace BioSIM_APITest
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
   }
 
-  TEST(BioSIMCoreTests, Test06_WeatherGenerator_Validation)
+  TEST(BioSIMCoreTests, Test06_ClimaticModel_Validation)
   {
     std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
     WBSF::CWeatherGeneratorAPI weatherGen("");
@@ -103,6 +103,16 @@ namespace BioSIM_APITest
     options = "Latitude=46&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+TX+P+TD+H+R&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
     WBSF::CTeleIO WGout = weatherGen.Generate(options);
     EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+
+    // execute Climatic(Annual)
+    options = "model=./Models/Climatic(Annual).mdl";
+    WBSF::CModelExecutionAPI modelClim("");
+    msg = modelClim.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "Model initialization should return Success";
+
+    options = "compress=0";
+    WBSF::CTeleIO ModelClimOut = modelClim.Execute(options, WGout);
+    EXPECT_EQ(ModelClimOut.m_msg, "Success") << "Execute should return Success";
 
     // open validation file
     std::ifstream file("testData/Validation/BioSIMTests.APIControllerTests.Test24_BioSimWeatherHappyPath.txt");
