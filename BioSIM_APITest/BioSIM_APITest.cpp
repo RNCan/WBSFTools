@@ -87,7 +87,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test05_WeatherGenerator_CanadaUSA_1980_2020_Init)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Canada-USA 1980-2020.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Canada-USA 1980-2020.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
