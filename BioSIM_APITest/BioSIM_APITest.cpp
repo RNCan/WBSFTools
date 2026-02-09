@@ -4,6 +4,8 @@
 #include "BioSIM_API.h"
 #include "BioSIM_APITest.h"
 #include <filesystem>
+#include <fstream> 
+
 using namespace std;
 
 namespace BioSIM_APITest
@@ -81,6 +83,78 @@ namespace BioSIM_APITest
     std::string options = "Model=Models/HemlockLooper.mdl";
     std::string msg = model.Initialize(options);
     EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";    
+  }
+
+  TEST(BioSIMCoreTests, Test05_WeatherGenerator_CanadaUSA_1980_2020_Init)
+  {
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Canada-USA 1980-2020.DailyDB";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+  }
+
+  TEST(BioSIMCoreTests, Test06_ClimaticModel_Validation)
+  {
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+
+    options = "Latitude=46&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+TX+P+TD+H+R&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
+    WBSF::CTeleIO WGout = weatherGen.Generate(options);
+    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+
+    // execute Climatic(Annual)
+    options = "model=./Models/Climatic(Annual).mdl";
+    WBSF::CModelExecutionAPI modelClim("");
+    msg = modelClim.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "Model initialization should return Success";
+
+    options = "compress=0";
+    WBSF::CTeleIO ModelClimOut = modelClim.Execute(options, WGout);
+    EXPECT_EQ(ModelClimOut.m_msg, "Success") << "Execute should return Success";
+
+    // open validation file
+    std::ifstream file("testData/Validation/BioSIMTests.APIControllerTests.Test24_BioSimWeatherHappyPath.txt");
+    ASSERT_TRUE(file.is_open()) << "Could not open validation file";
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    std::string validationData = buffer.str();
+
+    // compare results with validation data
+    EXPECT_EQ(WGout.m_data, validationData) << "Generated weather data should match validation data";
+  }
+
+  TEST(BioSIMCoreTests, Test07_WeatherGenerator_Gradients)
+  {    
+    // Here we test that running the WG with a specific case where the number of stations is lower than expected
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+
+    options = "Latitude=49.84446273509617&Longitude=-71.92627622323562&Elevation=326.58317098134694&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2001&Replications=1";
+    WBSF::CTeleIO WGout = weatherGen.Generate(options);
+    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+  }
+
+  TEST(BioSIMCoreTests, Test08_WeatherGenerator_Run_Twice_Produces_Same_Results)
+  {    
+    // Here we test that running the WG twice in Source=FromObservation mode with the same options produces the same results. 
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+
+    options = "Latitude=47&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2009&Last_year=2009&Replications=1";
+    WBSF::CTeleIO WGout = weatherGen.Generate(options);
+    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+
+    WBSF::CTeleIO WGout2 = weatherGen.Generate(options);
+    EXPECT_EQ(WGout2.m_msg, "Success") << "Generate should return Success";
+
+    // now compare WGout and WGout2
+    EXPECT_TRUE(WGout == WGout2) << "WG generated data outputs should be the same";
   }
 }
 

@@ -97,7 +97,14 @@ namespace WBSF
 			m_data = data;	//output data 
 		}
 
-
+		bool operator==(const CTeleIO& other) const
+		{
+			return m_compress == other.m_compress &&
+						 m_msg      == other.m_msg &&
+						 m_comment  == other.m_comment &&
+						 m_metadata == other.m_metadata &&
+						 m_data     == other.m_data;
+		}
 		
 		bool m_compress;		//if output is compress or not
 		std::string m_msg;		//error message
