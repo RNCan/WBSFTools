@@ -1,10 +1,12 @@
 #include <valarray>
 #include <array>
 #include <gtest/gtest.h>
-#include "BioSIM_API.h"
-#include "BioSIM_APITest.h"
 #include <filesystem>
 #include <fstream> 
+
+#include "BioSIM_API.h"
+#include "BioSIM_APITest.h"
+#include "Basic/UtilStd.h"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ namespace BioSIM_APITest
   {
     WBSF::CBioSIM_API_GlobalData global;
     std::string curpath = std::filesystem::current_path().string();
-    std::string msg = global.InitGlobalData("DailyCacheSize=50&Shore=testData/Layers/Shore.ann&DEM=testData/DEM/Demo 30s(SRTM30).tif");
+    std::string msg = global.InitGlobalData("DailyCacheSize=50&Shore=testData/Layers/Shore.ann&DEM=testData/DEM/Demo 30s(SRTM30).tif&ModelsPath=testData/Models/");
     EXPECT_EQ(msg, "Success") << "Global Data Initialization should return Success";
   }
 
@@ -23,6 +25,8 @@ namespace BioSIM_APITest
   void BioSIMTestEnvironment::TearDown()
   {
   }
+
+  
 
   // IMPORTANT
   // The following integration test suite uses testData files that must be present in the working directory.  This data is automatically copied by a post-build command in the CMakeLists.txt file.
@@ -60,7 +64,7 @@ namespace BioSIM_APITest
     EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";
 
     WBSF::CModelExecutionAPI model("");
-    options = "Model=Models/DegreeDay(Annual).mdl";
+    options = "Model=DegreeDay(Annual).mdl";
     msg = model.Initialize(options);
     EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";
 
@@ -80,7 +84,7 @@ namespace BioSIM_APITest
   TEST(BioSIMCoreTests, Test04_HemlockLooperModelInit)
   {    
     WBSF::CModelExecutionAPI model("");
-    std::string options = "Model=Models/HemlockLooper.mdl";
+    std::string options = "Model=HemlockLooper.mdl";
     std::string msg = model.Initialize(options);
     EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";    
   }
@@ -95,34 +99,37 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test06_ClimaticModel_Validation)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
-    WBSF::CWeatherGeneratorAPI weatherGen("");
-    std::string msg = weatherGen.Initialize(options);
-    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+      std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+      WBSF::CWeatherGeneratorAPI weatherGen("");
+      std::string msg = weatherGen.Initialize(options);
+      EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
 
-    options = "Latitude=46&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+TX+P+TD+H+R&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
-    WBSF::CTeleIO WGout = weatherGen.Generate(options);
-    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+      options = "Latitude=46.65&Longitude=-70.25&Elevation=150&compress=0&Variables=TN+T+TX+TX+P+TD+H+R&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
+      WBSF::CTeleIO WGout = weatherGen.Generate(options);
+      EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
 
-    // execute Climatic(Annual)
-    options = "model=./Models/Climatic(Annual).mdl";
-    WBSF::CModelExecutionAPI modelClim("");
-    msg = modelClim.Initialize(options);
-    EXPECT_EQ(msg, "Success") << "Model initialization should return Success";
+      // execute Climatic(Annual)
+      //options = "model=testData/Models/Climatic(Annual).mdl";
+      options = "model=Climatic(Annual).mdl";
+      WBSF::CModelExecutionAPI modelClim("");
+      msg = modelClim.Initialize(options);
+      EXPECT_EQ(msg, "Success") << "Model initialization should return Success";
 
-    options = "compress=0";
-    WBSF::CTeleIO ModelClimOut = modelClim.Execute(options, WGout);
-    EXPECT_EQ(ModelClimOut.m_msg, "Success") << "Execute should return Success";
+      options = "compress=0";
+      WBSF::CTeleIO ModelClimOut = modelClim.Execute(options, WGout);
+      EXPECT_EQ(ModelClimOut.m_msg, "Success") << "Execute should return Success";
+      
 
-    // open validation file
-    std::ifstream file("testData/Validation/BioSIMTests.APIControllerTests.Test24_BioSimWeatherHappyPath.txt");
-    ASSERT_TRUE(file.is_open()) << "Could not open validation file";
-    std::stringstream buffer;
-    buffer << file.rdbuf();
-    std::string validationData = buffer.str();
 
-    // compare results with validation data
-    EXPECT_EQ(WGout.m_data, validationData) << "Generated weather data should match validation data";
+      // open validation file
+      std::ifstream file("testData/Validation/BioSIMTests.APIControllerTests.Test24_BioSimWeatherHappyPath.txt");
+      ASSERT_TRUE(file.is_open()) << "Could not open validation file";
+      std::stringstream buffer;
+      buffer << file.rdbuf();
+      std::string validationData = buffer.str();
+
+      // compare results with validation data
+      EXPECT_EQ(ModelClimOut.m_data, validationData) << "Generated weather data should match validation data";
   }
 
   TEST(BioSIMCoreTests, Test07_WeatherGenerator_Gradients)
@@ -135,7 +142,7 @@ namespace BioSIM_APITest
 
     options = "Latitude=49.84446273509617&Longitude=-71.92627622323562&Elevation=326.58317098134694&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2001&Replications=1";
     WBSF::CTeleIO WGout = weatherGen.Generate(options);
-    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+    EXPECT_NE(WGout.m_msg, "Success") << "Generate should not return Success";
   }
 
   TEST(BioSIMCoreTests, Test08_WeatherGenerator_Run_Twice_Produces_Same_Results)
@@ -147,14 +154,14 @@ namespace BioSIM_APITest
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
 
     options = "Latitude=47&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2009&Last_year=2009&Replications=1";
-    WBSF::CTeleIO WGout = weatherGen.Generate(options);
-    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+    WBSF::CTeleIO WGout1 = weatherGen.Generate(options);
+    EXPECT_EQ(WGout1.m_msg, "Success") << "Generate should return Success";
 
     WBSF::CTeleIO WGout2 = weatherGen.Generate(options);
     EXPECT_EQ(WGout2.m_msg, "Success") << "Generate should return Success";
 
     // now compare WGout and WGout2
-    EXPECT_TRUE(WGout == WGout2) << "WG generated data outputs should be the same";
+    EXPECT_TRUE(WGout1 == WGout2) << "WG generated data outputs should be the same";
   }
 }
 

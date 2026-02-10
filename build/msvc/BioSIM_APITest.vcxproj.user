@@ -4,10 +4,12 @@
     <LocalDebuggerEnvironment>PATH=E:\ProjectCP\WBSFTools\lib\Debugx64;%PATH%
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>E:\ProjectCP\WBSFTools\BioSIM_APITest</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerEnvironment>PATH=E:\ProjectCP\WBSFTools\lib\Releasex64;%PATH%
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerWorkingDirectory>E:\ProjectCP\WBSFTools\BioSIM_APITest</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 </Project>

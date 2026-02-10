@@ -21,6 +21,9 @@
 *.so
 *.dylib
 *.dll
+!HemlockLooper.dll
+!Climatic.dll
+!DegreeDay.dll
 
 # Fortran module files
 *.mod
