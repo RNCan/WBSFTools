@@ -37,17 +37,19 @@ add_custom_command(TARGET BioSIM_APITest POST_BUILD
 )
 
 
-  # Copy the test data folder to the output directory after build
+# Copy the test data folder to the output directory after build
 add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/testData 
      $<TARGET_FILE_DIR:BioSIM_APITest>/testData
 	 COMMAND_EXPAND_LISTS	 
 )
 
+# Copy the models definition files (.MDL) to the /Models output directory
 add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy_directory ${CMAKE_SOURCE_DIR}/WBSFInstall/Models
      $<TARGET_FILE_DIR:BioSIM_APITest>/Models
 	 COMMAND_EXPAND_LISTS
 )
 
+# Copy the models DLLs (only those actually needed for tests) to the /Models output directory
 add_custom_command(TARGET BioSIM_APITest POST_BUILD COMMAND cmake -E copy $<TARGET_FILE:DegreeDay> $<TARGET_FILE:HemlockLooper> $<TARGET_FILE:Climatic>
      $<TARGET_FILE_DIR:BioSIM_APITest>/Models
 	 COMMAND_EXPAND_LISTS
