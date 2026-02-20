@@ -17,7 +17,9 @@ namespace BioSIM_APITest
   {
     WBSF::CBioSIM_API_GlobalData global;
     std::string curpath = std::filesystem::current_path().string();
-    std::string msg = global.InitGlobalData("DailyCacheSize=50&Shore=testData/Layers/Shore.ann&DEM=testData/DEM/Demo 30s(SRTM30).tif&ModelsPath=testData/Models/");
+    std::string msg = global.InitGlobalData("DailyCacheSize=50&Shore=testData/Layers/Shore.ann&DEM=testData/DEM/Demo 30s(SRTM30).tif&ModelsPath=Models/");  // Note: the ModelsPath is set to "Models/" which is a relative path. 
+                                                                                                                                                            // Those models are copied to the working directory by a post-build command in the CMakeLists.txt file. 
+                                                                                                                                                            // If you change this path, make sure to also update the post-build command in the CMakeLists.txt file to copy the models to the correct location.
     EXPECT_EQ(msg, "Success") << "Global Data Initialization should return Success";
   }
 
@@ -162,6 +164,19 @@ namespace BioSIM_APITest
 
     // now compare WGout and WGout2
     EXPECT_TRUE(WGout1 == WGout2) << "WG generated data outputs should be the same";
+  }
+
+  TEST(BioSIMCoreTests, Test09_WeatherGeneratorRequest)
+  {    
+    // Here we test that running the WG with a specific case where the number of stations is lower than expected
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+
+    options = "Latitude=46&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
+    WBSF::CTeleIO WGout = weatherGen.Generate(options);
+    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
   }
 }
 
