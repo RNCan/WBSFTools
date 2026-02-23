@@ -28,7 +28,7 @@ target_link_libraries(BioSIM_APITest PUBLIC
 	BioSIM_API
 )
 
-add_dependencies(BioSIM_APITest DegreeDay) # inform cmake that we need to build DegreeDay before running the tests
+add_dependencies(BioSIM_APITest DegreeDay HemlockLooper Climatic) # inform cmake that we need to build DegreeDay before running the tests
 
 add_custom_command(TARGET BioSIM_APITest POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
